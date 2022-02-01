@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EarthGardener</string>
+
+    <string name="menu_home">홈</string>
+    <string name="menu_post">글 목록</string>
+    <string name="menu_my">MY</string>
+</resources>
