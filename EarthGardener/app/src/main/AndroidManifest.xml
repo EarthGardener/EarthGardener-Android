@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EarthGardener">
         <activity
+            android:name=".presentation.post.PostFormActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
