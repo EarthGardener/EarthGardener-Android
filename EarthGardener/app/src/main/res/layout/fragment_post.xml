@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/iv_prev_month"
+                android:id="@+id/iv_goto_prev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -36,10 +36,10 @@
                 android:text="@string/month"
                 android:textAlignment="center"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@id/iv_prev_month"
+                app:layout_constraintBottom_toBottomOf="@id/iv_goto_prev"
                 app:layout_constraintEnd_toEndOf="@id/iv_next_month"
-                app:layout_constraintStart_toStartOf="@id/iv_prev_month"
-                app:layout_constraintTop_toTopOf="@id/iv_prev_month" />
+                app:layout_constraintStart_toStartOf="@id/iv_goto_prev"
+                app:layout_constraintTop_toTopOf="@id/iv_goto_prev" />
 
             <ImageView
                 android:id="@+id/iv_next_month"
@@ -48,7 +48,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/ic_right_arrow"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/iv_prev_month" />
+                app:layout_constraintTop_toTopOf="@id/iv_goto_prev" />
 
             <ImageView
                 android:layout_width="match_parent"
