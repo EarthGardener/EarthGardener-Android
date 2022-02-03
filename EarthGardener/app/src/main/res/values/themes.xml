@@ -13,4 +13,15 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.EarthGardener.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background_white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.EarthGardener</item>
+
+        <item name="android:statusBarColor">@color/primary_green</item>
+        <item name="android:navigationBarColor">@color/primary_green</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+    </style>
 </resources>

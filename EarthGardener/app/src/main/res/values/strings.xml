@@ -24,9 +24,19 @@
     <string name="confirm_code">인증번호 확인</string>
     <string name="nickname">닉네임</string>
 
+    
+    <!--MyPage-->
+    <string name="my_page">마이페이지</string>
+    <string name="my_modify_account">계정 변경</string>
+    <string name="my_push_alarm">푸시 알림</string>
+    <string name="my_dark_mode">다크모드</string>
+    <string name="my_require">문의하기</string>
+    <string name="my_help">도움말</string>
+    <string name="my_logout">로그아웃</string>
+    <string name="my_unregister">회원탈퇴</string>
+
 
     <string name="month">1월</string>
-    <string name="date">1/31</string>
     <string name="title">오늘의 기록 제목</string>
     <string name="point">250</string>
     <string name="exp">exp</string>
