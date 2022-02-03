@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.ActivityLoginBinding
+import team.gdsc.earthgardener.presentation.MainActivity
 import team.gdsc.earthgardener.presentation.base.BaseActivity
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
 
@@ -22,6 +23,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             val email = binding.etLoginEmail.text.toString()
             val pw = binding.etLoginPw.text.toString()
             // Post Login
+
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
