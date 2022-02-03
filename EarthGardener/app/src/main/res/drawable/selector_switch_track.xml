@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/rectangle_light_gray_width_60_height_25_radius_15"
+        android:state_checked="false"/>
+    <item
+        android:drawable="@drawable/rectangle_primary_green_width_60_height_25_radius_15"
+        android:state_checked="true"/>
+</selector>

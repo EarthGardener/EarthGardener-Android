@@ -1,14 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MyPageFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    </data>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="MyPageFragment" />
+        tools:context=".MyPageFragment">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_my_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_page"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
+                android:textSize="25sp"
+                android:fontFamily="@font/suit_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <LinearLayout
+                android:id="@+id/linear_user_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_page"
+                android:layout_marginTop="30dp">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view_my_page"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    app:cardCornerRadius="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+                    <ImageView
+                        android:id="@+id/iv_my_page_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"/>
+                </androidx.cardview.widget.CardView>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_my_page_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_black"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/linear_user_img"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="20dp"
+                />
+
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/any_light_gray"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_page_nickname"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/view_line">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_modify_account"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
+                    android:textColor="@color/text_black"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textStyle="bold"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/my_push_alarm"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/suit_bold"
+                        android:textColor="@color/text_black"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:textStyle="bold"/>
+                    <Switch
+                        android:id="@+id/switch_push_alarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:track="@drawable/selector_switch_track"
+                        android:thumb="@drawable/circle_white_size_25"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/my_dark_mode"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/suit_bold"
+                        android:textColor="@color/text_black"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:textStyle="bold"/>
+                    <Switch
+                        android:id="@+id/switch_dark_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:track="@drawable/selector_switch_track"
+                        android:thumb="@drawable/circle_white_size_25"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_require"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
+                    android:textColor="@color/text_black"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_help"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
+                    android:textColor="@color/text_black"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_logout"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
+                    android:textColor="@color/text_black"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_unregister"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
+                    android:textColor="@color/text_black"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>
