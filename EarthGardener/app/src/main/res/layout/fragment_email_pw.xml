@@ -29,6 +29,7 @@
                 android:id="@+id/et_sign_up_email"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:fontFamily="@font/suit_medium"
                 app:layout_constraintTop_toBottomOf="@id/tv_sign_up_email"
                 android:layout_marginTop="10dp"
                 android:hint="@string/email_hint"/>
@@ -49,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/post_code_to_email"
+                android:fontFamily="@font/suit_medium"
                 app:layout_constraintTop_toBottomOf="@+id/et_sign_up_email"
                 android:textColor="@color/any_dark_gray"
                 android:visibility="invisible"
@@ -70,6 +72,7 @@
                     android:background="@drawable/rectangle_light_gray_width_1"
                     android:textSize="15sp"
                     android:hint="@string/input_code"
+                    android:fontFamily="@font/suit_medium"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:paddingTop="10dp"
@@ -82,6 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/confirm_code"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/primary_green"
                     android:textSize="15sp"
                     android:layout_marginTop="10dp"
@@ -96,6 +100,7 @@
                 android:textColor="@color/text_black"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:fontFamily="@font/suit_medium"
                 app:layout_constraintTop_toBottomOf="@+id/linear_email_code"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="30dp"/>
@@ -105,6 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/pw_hint"
+                android:fontFamily="@font/suit_medium"
                 android:inputType="textPassword"
                 app:layout_constraintTop_toBottomOf="@+id/tv_signup_pw"/>
 
