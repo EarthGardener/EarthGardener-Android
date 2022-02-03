@@ -15,26 +15,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         btnLoginEvent()
-        navigateToSignUp()
+        btnSignUpEvent()
     }
 
     private fun btnLoginEvent(){
         binding.btnLogin.setOnClickListener {
             val email = binding.etLoginEmail.text.toString()
             val pw = binding.etLoginPw.text.toString()
-
             // Post Login
 
-            navigateToMain()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
-    private fun navigateToMain(){
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-    }
-
-    private fun navigateToSignUp(){
+    private fun btnSignUpEvent(){
         binding.tvLoginSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
