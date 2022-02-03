@@ -8,10 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -61,7 +58,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
     private fun changeToMultipart(bitmap: Bitmap){
         val bitmapRequestBody = BitmapRequestBody(bitmap)
         val bitmapMultipartBody: MultipartBody.Part =
-            MultipartBody.Part.createFormData("image", ".png", bitmapRequestBody)
+            MultipartBody.Part.createFormData("image", ".jpeg", bitmapRequestBody)
 
         // Post bitmapMultipartBody
     }
@@ -84,10 +81,10 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val signUpActivity = activity as SignUpActivity
                 if(binding.etSignUpNickname.text.isNotEmpty()){
-                    signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.btn_color_green)
+                    signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.rectangle_primary_green_radius_30)
                     signUpActivity.binding.btnNext.isEnabled = true
                 }else{
-                    signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.btn_color_light_gray)
+                    signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.rectangle_light_gray_radius_30)
                     signUpActivity.binding.btnNext.isEnabled = false
                 }
             }

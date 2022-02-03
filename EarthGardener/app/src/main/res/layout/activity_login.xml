@@ -78,7 +78,7 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:fontFamily="@font/suit_medium"
-            android:background="@drawable/btn_color_green"
+            android:background="@drawable/rectangle_primary_green_radius_30"
             app:layout_constraintTop_toBottomOf="@+id/et_login_pw"
             android:layout_marginTop="30dp"
             />

@@ -55,33 +55,38 @@
                 android:layout_marginTop="5dp"
                 android:textSize="15sp"/>
 
-            <EditText
-                android:id="@+id/et_email_code"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:background="@drawable/border_color_any_light_gray_1dp"
-                android:textSize="15sp"
-                android:hint="@string/input_code"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_code"
-                app:layout_goneMarginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="10dp"
-                />
-
-            <TextView
-                android:id="@+id/tv_check_code"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linear_email_code"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/confirm_code"
-                android:textColor="@color/primary_green"
-                android:textSize="15sp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/et_email_code"
+                app:layout_constraintTop_toBottomOf="@id/tv_code"
                 android:layout_marginTop="10dp"
-                />
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/et_email_code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_light_gray_width_1"
+                    android:textSize="15sp"
+                    android:hint="@string/input_code"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_marginRight="80dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_check_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/confirm_code"
+                    android:textColor="@color/primary_green"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_signup_pw"
@@ -91,7 +96,7 @@
                 android:textColor="@color/text_black"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@+id/et_email_code"
+                app:layout_constraintTop_toBottomOf="@+id/linear_email_code"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="30dp"/>
 

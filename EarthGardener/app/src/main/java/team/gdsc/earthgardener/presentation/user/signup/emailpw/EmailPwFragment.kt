@@ -62,8 +62,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
 
 
                 binding.tvCode.isVisible = true
-                binding.etEmailCode.isVisible = true
-                binding.tvCheckCode.isVisible = true
+                binding.linearEmailCode.isVisible = true
             }
         }
     }
@@ -92,13 +91,13 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     }
 
     private fun btnNextActive(){
-        val signUpActivity = activity as SignUpActivity // 반복되는데 어떻게 하지
+        val signUpActivity = activity as SignUpActivity
 
         if(binding.etSignupPw.text.isNotEmpty() ){ // 이메일 인증 코드 맞는지 여부 조건도 넣기
-            signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.btn_color_green)
+            signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.rectangle_primary_green_radius_30)
             signUpActivity.binding.btnNext.isEnabled = true
         }else{
-            signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.btn_color_light_gray)
+            signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.rectangle_light_gray_radius_30)
             signUpActivity.binding.btnNext.isEnabled = false
         }
     }
@@ -107,7 +106,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
         val signUpActivity = activity as SignUpActivity
         signUpActivity.binding.btnNext.setOnClickListener {
             signUpActivity.binding.btnNext.text = getString(R.string.finish)
-            signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.btn_color_light_gray)
+            signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.rectangle_light_gray_radius_30)
             signUpActivity.binding.btnNext.isEnabled = false
             signUpActivity.nextSignUpFragment(NickNameFragment())
         }
