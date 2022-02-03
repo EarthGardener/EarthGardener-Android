@@ -4,4 +4,25 @@
     <string name="menu_home">홈</string>
     <string name="menu_post">글 목록</string>
     <string name="menu_my">MY</string>
+
+
+    <!-- Login -->
+    <string name="login">로그인</string>
+    <string name="email">이메일</string>
+    <string name="email_hint">이메일을 입력해주세요</string>
+    <string name="pw">비밀번호</string>
+    <string name="pw_hint">비밀번호를 입력해주세요</string>
+    <string name="sign_up">회원가입</string>
+    <string name="find_pw">비밀번호 찾기</string>
+
+    <!-- SignUp -->
+    <string name="next">다음</string>
+    <string name="finish">완료</string>
+    <string name="email_id">이메일 주소(아이디)</string>
+    <string name="get_code">인증번호 전송</string>
+    <string name="post_code_to_email">인증번호가 메일로 전송되었습니다</string>
+    <string name="input_code">인증번호 입력</string>
+    <string name="confirm_code">인증번호 확인</string>
+    <string name="nickname">닉네임</string>
+
 </resources>
