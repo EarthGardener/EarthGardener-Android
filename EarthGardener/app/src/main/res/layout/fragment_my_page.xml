@@ -95,9 +95,10 @@
                     android:layout_height="wrap_content"
                     android:text="@string/my_modify_account"
                     android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
                     android:textColor="@color/text_black"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:textStyle="bold"/>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -107,9 +108,10 @@
                         android:layout_height="match_parent"
                         android:text="@string/my_push_alarm"
                         android:textSize="18sp"
+                        android:fontFamily="@font/suit_bold"
                         android:textColor="@color/text_black"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
                         android:textStyle="bold"/>
                     <Switch
                         android:id="@+id/switch_push_alarm"
@@ -118,8 +120,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:track="@drawable/switch_track_selector"
-                        android:thumb="@drawable/switch_thumb"/>
+                        android:track="@drawable/selector_switch_track"
+                        android:thumb="@drawable/circle_white_size_25"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -130,9 +132,10 @@
                         android:layout_height="match_parent"
                         android:text="@string/my_dark_mode"
                         android:textSize="18sp"
+                        android:fontFamily="@font/suit_bold"
                         android:textColor="@color/text_black"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
                         android:textStyle="bold"/>
                     <Switch
                         android:id="@+id/switch_dark_mode"
@@ -141,8 +144,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:track="@drawable/switch_track_selector"
-                        android:thumb="@drawable/switch_thumb"/>
+                        android:track="@drawable/selector_switch_track"
+                        android:thumb="@drawable/circle_white_size_25"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -151,36 +154,40 @@
                     android:layout_height="wrap_content"
                     android:text="@string/my_require"
                     android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
                     android:textColor="@color/text_black"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/my_help"
                     android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
                     android:textColor="@color/text_black"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/my_logout"
                     android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
                     android:textColor="@color/text_black"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/my_unregister"
                     android:textSize="18sp"
+                    android:fontFamily="@font/suit_bold"
                     android:textColor="@color/text_black"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:textStyle="bold"/>
 
             </LinearLayout>
