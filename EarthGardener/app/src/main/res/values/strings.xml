@@ -4,4 +4,12 @@
     <string name="menu_home">홈</string>
     <string name="menu_post">글 목록</string>
     <string name="menu_my">MY</string>
+    <string name="month">1월</string>
+    <string name="date">1/31</string>
+    <string name="title">오늘의 기록 제목</string>
+    <string name="point">250</string>
+    <string name="exp">exp</string>
+    <string name="first_todo">first todo</string>
+    <string name="second_todo">second todo</string>
+    <string name="third_todo">third todo</string>
 </resources>
