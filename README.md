@@ -6,25 +6,31 @@
 
 ## 특징
 
-## 사용기술
-- Front-end: AndroidStudio Kotlin
-- Back-end: SpringBoot
-
 ## 사용한 기술스텍
+- #### 안드로이드
 
 | **Architecture**            | MVVM                                                         |
 | --------------------------- | ------------------------------------------------------------ |
 | **Design Pattern**          | Repository Pattern, Delegation Pattern                       |
-| **Jetpack Components**      | DataBinding, LiveData, ViewModel, Lifecycle, Navigation, ViewPager2, Room |
+| **Jetpack Components**      | DataBinding, LiveData, ViewModel, Lifecycle                  |
 | **Dependency Injection**    | Koin                                                         |
 | **Network**                 | OkHttp3, Retrofit2                                           |
 | **Asynchronous Processing** | Coroutine                                                    |
 | **Third Party Library**     | Glide                                                        |
 | **Strategy**                | Git Flow                                                     |
-| **Other Tool**              | Notion, Slack                                                |
+| **Other Tool**              | Notion                                                       |
+
+
+- #### 서버
+  - AWS EC2 linux
+  - RDS Mysql
+  - Spring Boot F/W
+
+
+## 기획의도 
 
 ## 기대효과
-
+ 
 
 ## Preview
 ### 🍀 회원가입
