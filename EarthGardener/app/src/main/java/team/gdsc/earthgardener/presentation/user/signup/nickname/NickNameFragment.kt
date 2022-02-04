@@ -14,15 +14,23 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okio.BufferedSink
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentNickNameBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
 import team.gdsc.earthgardener.presentation.user.signup.nickname.viewModel.CheckNicknameViewModel
+import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRequest
+import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpResponse
+import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitClient
+import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitInterface
 import java.lang.Exception
 
 class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment_nick_name) {
@@ -32,6 +40,9 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
 
     private var email: String? =null
     private var pw: String? = null
+
+    var signUpMap = HashMap<String, RequestBody>()
+    var img : MultipartBody.Part?= null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,8 +82,9 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
     private fun changeToMultipart(bitmap: Bitmap){
         val bitmapRequestBody = BitmapRequestBody(bitmap)
         val bitmapMultipartBody: MultipartBody.Part =
-            MultipartBody.Part.createFormData("image", ".jpeg", bitmapRequestBody)
+            MultipartBody.Part.createFormData("image", ".png", bitmapRequestBody)
 
+        img = bitmapMultipartBody
         // Post bitmapMultipartBody
     }
 
@@ -123,12 +135,42 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
         checkNicknameViewModel.currentStatus.observe(this, Observer{
             if(it.toString() == "200"){
                 // 회원가입 post하기
-                    Log.d("nickname", "new")
-                // 회원가입 post 성공하면 로그인 화면으로 이동
+                    var  requestEmail = RequestBody.create("text/plain".toMediaTypeOrNull(), email.toString())
+                    var requestPW = RequestBody.create("text/plain".toMediaTypeOrNull(), pw.toString())
+                    var requestNickname = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.etSignUpNickname.text.toString())
 
-            }else{
+                signUpMap["email"] = requestEmail
+                signUpMap["pw"] = requestPW
+                signUpMap["nickname"] = requestNickname
+                val signUpRequest = SignUpRequest(email!!, pw!!, binding.etSignUpNickname.text.toString())
+                postSignUpData(signUpMap, img!!)
+            }else if(it.toString() == "409"){
                 Toast.makeText(context, "이미 존재하는 닉네임입니다", Toast.LENGTH_SHORT).show()
                 binding.etSignUpNickname.text.clear()
+            }
+        })
+    }
+
+    private fun postSignUpData(data: HashMap<String, RequestBody>, image: MultipartBody.Part){
+        val signUpInterface = SignUpRetrofitClient.sRetrofit.create(SignUpRetrofitInterface::class.java)
+        Log.d("signup", "hi")
+
+        signUpInterface.postSignUp(data, image).enqueue(object: Callback<SignUpResponse> {
+            override fun onResponse(
+                call: Call<SignUpResponse>,
+                response: Response<SignUpResponse>
+            ) {
+                if(response.isSuccessful){
+                    Log.d("result", "success")
+                    val signUpActivity = activity as SignUpActivity
+                    signUpActivity.finish()
+                }else{
+                    Log.d("fail", "error code ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                Log.d("onFailure", t.message ?: "통신오류")
             }
         })
     }
