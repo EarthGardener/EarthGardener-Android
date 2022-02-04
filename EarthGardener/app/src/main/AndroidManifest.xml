@@ -19,6 +19,7 @@
             android:name=".presentation.post.PostFormActivity"
             android:theme="@style/Theme.AppCompat"
             android:exported="true" />
+        <activity
             android:name=".presentation.user.signup.SignUpActivity"
             android:theme="@style/Theme.EarthGardener"
             android:windowSoftInputMode="adjustResize"
