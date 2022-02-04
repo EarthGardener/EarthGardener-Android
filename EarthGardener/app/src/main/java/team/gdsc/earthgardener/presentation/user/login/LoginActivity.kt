@@ -17,7 +17,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         installSplashScreen()
         super.onCreate(savedInstanceState)
         btnLoginEvent()
-        btnSignUpEvent()
+        navigateToSignUp()
     }
 
     private fun btnLoginEvent(){
@@ -26,14 +26,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             val pw = binding.etLoginPw.text.toString()
             // Post Login
 
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            navigateToMain()
         }
     }
 
-    private fun btnSignUpEvent(){
+    private fun navigateToSignUp(){
         binding.tvLoginSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
+    }
+
+    private fun navigateToMain(){
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }
