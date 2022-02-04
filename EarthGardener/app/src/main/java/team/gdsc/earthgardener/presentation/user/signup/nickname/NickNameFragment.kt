@@ -135,14 +135,14 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
         checkNicknameViewModel.currentStatus.observe(this, Observer{
             if(it.toString() == "200"){
                 // 회원가입 post하기
-                    var  requestEmail = RequestBody.create("text/plain".toMediaTypeOrNull(), email.toString())
+                    var requestEmail = RequestBody.create("text/plain".toMediaTypeOrNull(), email.toString())
                     var requestPW = RequestBody.create("text/plain".toMediaTypeOrNull(), pw.toString())
                     var requestNickname = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.etSignUpNickname.text.toString())
 
                 signUpMap["email"] = requestEmail
                 signUpMap["pw"] = requestPW
                 signUpMap["nickname"] = requestNickname
-                val signUpRequest = SignUpRequest(email!!, pw!!, binding.etSignUpNickname.text.toString())
+
                 postSignUpData(signUpMap, img!!)
             }else if(it.toString() == "409"){
                 Toast.makeText(context, "이미 존재하는 닉네임입니다", Toast.LENGTH_SHORT).show()
