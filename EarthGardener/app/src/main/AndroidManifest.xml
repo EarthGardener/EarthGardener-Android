@@ -34,10 +34,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.post.PostFormActivity"
-            android:theme="@style/Theme.EarthGardener"
-            android:exported="false" />
-        <activity
             android:name=".presentation.MainActivity"
             android:theme="@style/Theme.EarthGardener"
             android:exported="false">
