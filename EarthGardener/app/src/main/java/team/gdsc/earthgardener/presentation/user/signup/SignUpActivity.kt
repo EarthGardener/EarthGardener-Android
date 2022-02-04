@@ -20,7 +20,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
             .commit()
     }
 
-    fun nextSignUpFragment(fa: Fragment){
+    fun nextSignUpFragment(fa: Fragment, bundle: Bundle){
+        fa.arguments = bundle
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_sign_up, fa)
             .commit()
