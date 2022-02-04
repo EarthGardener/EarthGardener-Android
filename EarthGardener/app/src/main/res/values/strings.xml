@@ -15,6 +15,7 @@
     <string name="my_help">도움말</string>
     <string name="my_logout">로그아웃</string>
     <string name="my_unregister">회원탈퇴</string>
+    <string name="date">1/31</string>
 
     <string name="month">1월</string>
     <string name="title">오늘의 기록 제목</string>
@@ -39,5 +40,15 @@
     <string name="point100">100</string>
     <string name="photo_msg">사진 인증</string>
     <string name="save">저장하기</string>
+
+    <!-- Home -->
+    <string name="home_subtitle">지구를 지켜보아요</string>
+    <string name="home_plant_title">지금 자라고있는 나무</string>
+    <string name="home_footprints_title">지구를 지키기위한 발자취</string>
+    <string name="home_monthly">이번 달에 심은 나무</string>
+    <string name="home_total">전체 나무 개수</string>
+    <string name="dialog_title">다음으로 키울 식물의\n이름을 정해주세요.</string>
+    <string name="dialog_subtitle">나무를 완성할때 마다 정할 수 있어요.</string>
+    <string name="dialog_hint_tree_name">나무 이름을 작성하세요</string>
 
 </resources>
