@@ -1,33 +1,40 @@
 package team.gdsc.earthgardener.di
 
 import com.google.gson.GsonBuilder
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import team.gdsc.earthgardener.data.api.PostService
+import team.gdsc.earthgardener.data.api.LoginService
+import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_ACCESS_TOKEN
+import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.sSharedPreferences
 
 val netWorkModule = module {
     single{
         OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor())
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addNetworkInterceptor(XAccessTokenInterceptor())
+            .addInterceptor(Interceptor { chain ->
+                chain.proceed(
+                    chain.request().newBuilder()
+                        .build()
+                )
+            })
             .build()
     }
 
-    single<Retrofit> {
+    single<Retrofit>{
         Retrofit.Builder()
             .client(get())
-            .addConverterFactory(
-                GsonConverterFactory.create(
-                    GsonBuilder().setLenient().create()
-                )
-            )
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .baseUrl("http://52.78.175.39:8080/")
             .build()
     }
 
-    single<PostService> {
-        get<Retrofit>().create(PostService::class.java)
+    single<LoginService>{
+        get<Retrofit>().create(LoginService::class.java)
     }
+
 }
