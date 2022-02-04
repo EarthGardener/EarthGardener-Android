@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,6 +32,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
         checkEmailPattern()
         checkEmailWatcher()
         getCodeEvent()
+        observeCheckEmailCode()
         checkCode()
         etPasswordWatcher()
         btnNextEvent()
@@ -79,10 +81,17 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
         }
     }
 
+    private fun observeCheckEmailCode(){
+        checkEmailViewModel.currentEmail.observe(this, Observer{
+            Log.d("code", it.toString())
+            emailCode = it.toString()
+        })
+    }
+
     private fun checkCode(){
         binding.tvCheckCode.setOnClickListener {
             // check if code is right
-            if(emailCode.equals(binding.etEmailCode.text.toString())){
+            if(emailCode.equals(binding.etEmailCode.text.toString().trim())){
                 checkEmailCode = true
             }else{
                 Toast.makeText(context, "인증코드를 잘못 입력하셨습니다", Toast.LENGTH_SHORT).show()
@@ -111,7 +120,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     private fun btnNextActive(){
         val signUpActivity = activity as SignUpActivity
 
-        if(binding.etSignupPw.text.isNotEmpty() ){ // 이메일 인증 코드 맞는지 여부 조건도 넣기 && checkEmailCode
+        if(binding.etSignupPw.text.isNotEmpty() && checkEmailCode){ // 이메일 인증 코드 맞는지 여부 조건도 넣기
             signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.rectangle_primary_green_radius_30)
             signUpActivity.binding.btnNext.isEnabled = true
         }else{

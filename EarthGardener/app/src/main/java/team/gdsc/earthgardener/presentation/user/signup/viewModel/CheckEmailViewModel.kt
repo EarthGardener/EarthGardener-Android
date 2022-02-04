@@ -13,8 +13,12 @@ import team.gdsc.earthgardener.domain.LoginRepository
 
 class CheckEmailViewModel(private val loginRepository: LoginRepository): ViewModel() {
 
-    //private var _checkEmail = MutableLiveData<CheckEmailData>()
-    //var checkEmail : LiveData<CheckEmailData> = _checkEmail
+    private val _currentEmail = MutableLiveData<String>()
+    val currentEmail : LiveData<String>
+        get() = _currentEmail
+    init{
+        _currentEmail.value = ""
+    }
 
     private var _email : String = ""
     var email: String = _email
@@ -23,16 +27,12 @@ class CheckEmailViewModel(private val loginRepository: LoginRepository): ViewMod
             field = value
         }
 
-
     fun getEmail() = viewModelScope.launch(){
         runCatching{loginRepository.getCheckEmailResult(_email)}
             .onSuccess {
-                //_checkEmail.postValue(it)
-                Log.d("getEmail", it.code)
-
+                _currentEmail.value = it.code
             }
             .onFailure {
-                Log.d("getEmail", "fail")
                 it.printStackTrace()
             }
     }
