@@ -1,6 +1,7 @@
 package team.gdsc.earthgardener.presentation.post.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,13 +12,14 @@ import team.gdsc.earthgardener.domain.post.PostRepository
 
 class PostFormViewModel(val postRepository: PostRepository) : ViewModel() {
     private val _checklist = MutableLiveData<CheckListData>()
-    val checklist: MutableLiveData<CheckListData> get() = _checklist
+    val checklist: LiveData<CheckListData> get() = _checklist
 
     //private val _postList : MutableList<PostListData.PostList> = mutableListOf()
     // postList: MutableList<PostListData.PostList> get() = _postList
 
 
     fun getCheckList() : MutableLiveData<CheckListData> {
+        Log.d("viewModel getCheckList", "${_checklist}")
         return _checklist
     }
 
