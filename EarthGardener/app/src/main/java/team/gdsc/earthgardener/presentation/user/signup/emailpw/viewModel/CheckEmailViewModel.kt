@@ -1,4 +1,4 @@
-package team.gdsc.earthgardener.presentation.user.signup.nickname.viewModel
+package team.gdsc.earthgardener.presentation.user.signup.emailpw.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

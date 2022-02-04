@@ -15,7 +15,7 @@ import team.gdsc.earthgardener.databinding.FragmentEmailPwBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.nickname.NickNameFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
-import team.gdsc.earthgardener.presentation.user.signup.nickname.viewModel.CheckEmailViewModel
+import team.gdsc.earthgardener.presentation.user.signup.emailpw.viewModel.CheckEmailViewModel
 import java.util.regex.Pattern
 
 class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_email_pw) {

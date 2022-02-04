@@ -1,5 +1,6 @@
-package team.gdsc.earthgardener.presentation.user.signup.emailpw.viewModel
+package team.gdsc.earthgardener.presentation.user.signup.nickname.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,11 +11,11 @@ import team.gdsc.earthgardener.domain.nickname.CheckNicknameRepository
 class CheckNicknameViewModel(private val checkNicknameRepository: CheckNicknameRepository)
     :ViewModel(){
 
-    private val _status = MutableLiveData<Int>()
-    val currentStatus : LiveData<Int>
+    private val _status = MutableLiveData<String>()
+    val currentStatus : LiveData<String>
         get() = _status
     init{
-        _status.value = 0
+        _status.value = ""
     }
 
 
@@ -29,7 +30,8 @@ class CheckNicknameViewModel(private val checkNicknameRepository: CheckNicknameR
     fun getNickname() = viewModelScope.launch(){
         kotlin.runCatching { checkNicknameRepository.getCheckNicknameResult(_nickname) }
             .onSuccess {
-
+                Log.d("stauts", it.status.toString())
+                _status.value = it.status.toString()
             }
             .onFailure {
                 it.printStackTrace()
