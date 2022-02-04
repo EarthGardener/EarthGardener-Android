@@ -11,7 +11,8 @@
         android:theme="@style/Theme.EarthGardener.Splash">
         <activity
             android:name=".presentation.post.PostFormActivity"
-            android:exported="false" />
+            android:theme="@style/Theme.AppCompat"
+            android:exported="true" />
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
@@ -21,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

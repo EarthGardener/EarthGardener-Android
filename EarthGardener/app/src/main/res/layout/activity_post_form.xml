@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="checkList"
+            type="team.gdsc.earthgardener.domain.post.CheckListData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="21dp"
                         android:fontFamily="@font/suit_extra_bold"
-                        android:text="@string/date"
+                        android:text="1/31"
                         android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +131,7 @@
                         android:paddingStart="20dp"
                         android:paddingTop="16dp"
                         android:paddingBottom="16dp"
-                        android:text="@string/fist_check_list"
+                        android:text="111"
                         android:textSize="15sp"
                         app:layout_constraintEnd_toStartOf="@+id/tv_300"
                         app:layout_constraintStart_toStartOf="@+id/et_title"
@@ -163,7 +165,7 @@
                         android:paddingStart="20dp"
                         android:paddingTop="16dp"
                         android:paddingBottom="16dp"
-                        android:text="@string/second_check_list"
+                        android:text="222"
                         android:textSize="15sp"
                         app:layout_constraintEnd_toStartOf="@+id/tv_250"
                         app:layout_constraintStart_toStartOf="@id/tv_first_check_list"
@@ -196,7 +198,7 @@
                         android:paddingStart="20dp"
                         android:paddingTop="16dp"
                         android:paddingBottom="16dp"
-                        android:text="@string/third_check_list"
+                        android:text="333"
                         android:textSize="15sp"
                         app:layout_constraintEnd_toStartOf="@+id/tv_200"
                         app:layout_constraintStart_toStartOf="@id/tv_second_check_list"
@@ -229,7 +231,7 @@
                         android:paddingStart="20dp"
                         android:paddingTop="16dp"
                         android:paddingBottom="16dp"
-                        android:text="@string/forth_check_list"
+                        android:text="444"
                         android:textSize="15sp"
                         app:layout_constraintEnd_toStartOf="@+id/tv_150"
                         app:layout_constraintStart_toStartOf="@id/tv_third_check_list"
@@ -262,7 +264,7 @@
                         android:paddingStart="20dp"
                         android:paddingTop="16dp"
                         android:paddingBottom="16dp"
-                        android:text="@string/fifth_check_list"
+                        android:text="555"
                         android:textSize="15sp"
                         app:layout_constraintEnd_toStartOf="@+id/tv_100"
                         app:layout_constraintStart_toStartOf="@id/tv_forth_check_list"

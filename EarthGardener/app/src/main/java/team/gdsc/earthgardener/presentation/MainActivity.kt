@@ -1,5 +1,6 @@
 package team.gdsc.earthgardener.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -10,6 +11,7 @@ import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.ActivityMainBinding
 import team.gdsc.earthgardener.presentation.home.HomeFragment
 import team.gdsc.earthgardener.presentation.mypage.MyPageFragment
+import team.gdsc.earthgardener.presentation.post.PostFormActivity
 import team.gdsc.earthgardener.presentation.post.PostFragment
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +30,11 @@ class MainActivity : AppCompatActivity() {
 
         initViews()
         initBottomNavigationView()
+
+        binding.fabWrite.setOnClickListener {
+            val intent = Intent(this, PostFormActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
