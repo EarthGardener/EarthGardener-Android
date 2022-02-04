@@ -4,12 +4,13 @@ import android.content.Intent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.ActivityLoginBinding
-import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_AUTH_TOKEN
+import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_ACCESS_TOKEN
 import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.editor
 
 import team.gdsc.earthgardener.presentation.main.MainActivity
@@ -61,7 +62,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         loginInterface.postLogin(data).enqueue(object: Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if(response.isSuccessful){
-                    editor.putString(X_AUTH_TOKEN, response.body()!!.token)
+                    editor.putString(X_ACCESS_TOKEN, response.body()!!.token)
                     editor.commit()
                     navigateToMain()
                 }else{
