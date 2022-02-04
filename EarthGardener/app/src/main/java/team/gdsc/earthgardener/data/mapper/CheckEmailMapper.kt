@@ -6,7 +6,9 @@ import team.gdsc.earthgardener.domain.CheckEmailData
 object CheckEmailMapper {
     fun mapperToCheckEmailResultSuccessData(resCheckEmailSuccessData: ResCheckEmailSuccessData): CheckEmailData{
         return CheckEmailData(
-            code = resCheckEmailSuccessData.code
+            code = resCheckEmailSuccessData.code,
+            message = resCheckEmailSuccessData.message,
+            status = resCheckEmailSuccessData.status
         )
     }
 }

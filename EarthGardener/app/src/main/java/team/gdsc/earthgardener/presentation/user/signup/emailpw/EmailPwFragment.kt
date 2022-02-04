@@ -3,17 +3,28 @@ package team.gdsc.earthgardener.presentation.user.signup.emailpw
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentEmailPwBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.nickname.NickNameFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
+import team.gdsc.earthgardener.presentation.user.signup.viewModel.CheckEmailViewModel
 import java.util.regex.Pattern
 
 class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_email_pw) {
+
+    private val checkEmailViewModel: CheckEmailViewModel by viewModel()
+    private var emailCode: String?= null
+    private var checkEmailCode = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,11 +69,12 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     private fun getCodeEvent(){
         binding.tvGetCode.setOnClickListener {
             if(checkEmailPattern()){
-                // Get Code from email
-
-
                 binding.tvCode.isVisible = true
                 binding.linearEmailCode.isVisible = true
+
+                // 통신 Get Code from email
+                checkEmailViewModel.email = binding.etSignUpEmail.text.toString()
+                checkEmailViewModel.getEmail()
             }
         }
     }
@@ -70,6 +82,12 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     private fun checkCode(){
         binding.tvCheckCode.setOnClickListener {
             // check if code is right
+            if(emailCode.equals(binding.etEmailCode.text.toString())){
+                checkEmailCode = true
+            }else{
+                Toast.makeText(context, "인증코드를 잘못 입력하셨습니다", Toast.LENGTH_SHORT).show()
+                binding.etEmailCode.text.clear()
+            }
         }
     }
 
@@ -93,7 +111,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     private fun btnNextActive(){
         val signUpActivity = activity as SignUpActivity
 
-        if(binding.etSignupPw.text.isNotEmpty() ){ // 이메일 인증 코드 맞는지 여부 조건도 넣기
+        if(binding.etSignupPw.text.isNotEmpty() ){ // 이메일 인증 코드 맞는지 여부 조건도 넣기 && checkEmailCode
             signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.rectangle_primary_green_radius_30)
             signUpActivity.binding.btnNext.isEnabled = true
         }else{
@@ -105,13 +123,15 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     private fun btnNextEvent(){
         val signUpActivity = activity as SignUpActivity
         signUpActivity.binding.btnNext.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("email", binding.etSignUpEmail.text.toString())
+            bundle.putString("pw", binding.etSignupPw.text.toString())
+
             signUpActivity.binding.btnNext.text = getString(R.string.finish)
             signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.rectangle_light_gray_radius_30)
             signUpActivity.binding.btnNext.isEnabled = false
-            signUpActivity.nextSignUpFragment(NickNameFragment())
+            signUpActivity.nextSignUpFragment(NickNameFragment(), bundle)
         }
     }
-
-
 
 }

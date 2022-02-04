@@ -2,14 +2,14 @@ package team.gdsc.earthgardener.data.api
 
 import retrofit2.http.Body
 import retrofit2.http.GET
-import team.gdsc.earthgardener.data.model.request.ReqCheckEmailSuccessData
+import retrofit2.http.Query
 import team.gdsc.earthgardener.data.model.response.ResCheckEmailSuccessData
 
 interface LoginService {
     // Get Email Code
-    @GET("/user/signup/email")
+    @GET("user/signup/email")
     suspend fun GetEmail(
-        @Body body: ReqCheckEmailSuccessData
+        @Query("email") email: String
     ):ResCheckEmailSuccessData
 
     // Get NickName

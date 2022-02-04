@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
@@ -24,11 +25,17 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
 
     private val OPEN_GALLERY = 1
 
+    private var email: String? =null
+    private var pw: String? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         openGallery()
         btnFinishActive()
         btnFinishEvent()
+
+        email = arguments!!.getString("email", "error")
+        pw = arguments!!.getString("pw", "error")
     }
 
     private fun openGallery(){
