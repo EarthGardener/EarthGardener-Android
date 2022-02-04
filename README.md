@@ -10,6 +10,19 @@
 - Front-end: AndroidStudio Kotlin
 - Back-end: SpringBoot
 
+## 사용한 기술스텍
+
+| **Architecture**            | MVVM                                                         |
+| --------------------------- | ------------------------------------------------------------ |
+| **Design Pattern**          | Repository Pattern, Delegation Pattern                       |
+| **Jetpack Components**      | DataBinding, LiveData, ViewModel, Lifecycle, Navigation, ViewPager2, Room |
+| **Dependency Injection**    | Koin                                                         |
+| **Network**                 | OkHttp3, Retrofit2                                           |
+| **Asynchronous Processing** | Coroutine                                                    |
+| **Third Party Library**     | Glide                                                        |
+| **Strategy**                | Git Flow                                                     |
+| **Other Tool**              | Notion, Slack                                                |
+
 ## 기대효과
 
 
