@@ -1,17 +1,13 @@
-package team.gdsc.earthgardener.presentation.user.signup.viewModel
+package team.gdsc.earthgardener.presentation.user.signup.nickname.viewModel
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import team.gdsc.earthgardener.data.model.response.ResCheckEmailSuccessData
-import team.gdsc.earthgardener.domain.CheckEmailData
-import team.gdsc.earthgardener.domain.LoginRepository
+import team.gdsc.earthgardener.domain.email.CheckEmailRepository
 
-class CheckEmailViewModel(private val loginRepository: LoginRepository): ViewModel() {
+class CheckEmailViewModel(private val checkEmailRepository: CheckEmailRepository): ViewModel() {
 
     private val _currentEmail = MutableLiveData<String>()
     val currentEmail : LiveData<String>
@@ -28,7 +24,7 @@ class CheckEmailViewModel(private val loginRepository: LoginRepository): ViewMod
         }
 
     fun getEmail() = viewModelScope.launch(){
-        runCatching{loginRepository.getCheckEmailResult(_email)}
+        runCatching{checkEmailRepository.getCheckEmailResult(_email)}
             .onSuccess {
                 _currentEmail.value = it.code
             }

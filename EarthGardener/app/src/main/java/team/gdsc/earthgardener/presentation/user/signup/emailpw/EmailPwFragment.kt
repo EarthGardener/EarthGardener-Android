@@ -10,15 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentEmailPwBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.nickname.NickNameFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
-import team.gdsc.earthgardener.presentation.user.signup.viewModel.CheckEmailViewModel
+import team.gdsc.earthgardener.presentation.user.signup.nickname.viewModel.CheckEmailViewModel
 import java.util.regex.Pattern
 
 class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_email_pw) {
@@ -93,6 +90,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
             // check if code is right
             if(emailCode.equals(binding.etEmailCode.text.toString().trim())){
                 checkEmailCode = true
+                Toast.makeText(context, "인증에 성공했습니다", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(context, "인증코드를 잘못 입력하셨습니다", Toast.LENGTH_SHORT).show()
                 binding.etEmailCode.text.clear()

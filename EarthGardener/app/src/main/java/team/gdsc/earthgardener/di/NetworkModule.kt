@@ -36,4 +36,5 @@ val netWorkModule = module {
     single<LoginService>{
         get<Retrofit>().create(LoginService::class.java)
     }
+
 }

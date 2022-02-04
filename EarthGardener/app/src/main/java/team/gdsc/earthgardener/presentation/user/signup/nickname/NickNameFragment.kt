@@ -10,19 +10,24 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okio.BufferedSink
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentNickNameBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
+import team.gdsc.earthgardener.presentation.user.signup.emailpw.viewModel.CheckNicknameViewModel
 import java.lang.Exception
 
 class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment_nick_name) {
 
+    private val checkNicknameViewModel: CheckNicknameViewModel by viewModel()
     private val OPEN_GALLERY = 1
 
     private var email: String? =null
@@ -32,6 +37,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
         super.onViewCreated(view, savedInstanceState)
         openGallery()
         btnFinishActive()
+        //observeCheckNickname()
         btnFinishEvent()
 
         email = arguments!!.getString("email", "error")
@@ -104,12 +110,27 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
     }
 
     private fun btnFinishEvent(){
-        // Post SignUp
-
-
         val signUpActivity = activity as SignUpActivity
         signUpActivity.binding.btnNext.setOnClickListener {
             signUpActivity.finish()
+            // 먼저 닉네임 중복 여부 판단
+            checkNicknameViewModel.nickname = binding.etSignUpNickname.text.toString()
+            checkNicknameViewModel.getNickname()
+            observeCheckNickname()
         }
+    }
+
+    private fun observeCheckNickname(){
+        checkNicknameViewModel.currentStatus.observe(this, Observer{
+            Log.d("result", it.toString())
+            if(it.toString().equals("200")){
+                // 회원가입 post하기
+                    Log.d("nickname", "new")
+
+            }else{
+                Toast.makeText(context, "이미 존재하는 닉네임입니다", Toast.LENGTH_SHORT).show()
+                binding.etSignUpNickname.text.clear()
+            }
+        })
     }
 }

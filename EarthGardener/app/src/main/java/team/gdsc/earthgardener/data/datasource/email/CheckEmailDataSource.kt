@@ -1,4 +1,4 @@
-package team.gdsc.earthgardener.data.datasource
+package team.gdsc.earthgardener.data.datasource.email
 
 import team.gdsc.earthgardener.data.model.response.ResCheckEmailSuccessData
 

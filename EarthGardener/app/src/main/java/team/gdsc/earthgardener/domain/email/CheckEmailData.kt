@@ -1,4 +1,4 @@
-package team.gdsc.earthgardener.domain
+package team.gdsc.earthgardener.domain.email
 
 data class CheckEmailData(
     val code: String,
