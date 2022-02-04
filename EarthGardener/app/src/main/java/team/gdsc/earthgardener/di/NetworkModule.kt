@@ -8,6 +8,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import team.gdsc.earthgardener.data.api.LoginService
+import team.gdsc.earthgardener.data.api.TreeService
 
 
 val netWorkModule = module {
@@ -34,6 +35,10 @@ val netWorkModule = module {
 
     single<LoginService>{
         get<Retrofit>().create(LoginService::class.java)
+    }
+
+    single<TreeService> {
+        get<Retrofit>().create(TreeService::class.java)
     }
 
 }
