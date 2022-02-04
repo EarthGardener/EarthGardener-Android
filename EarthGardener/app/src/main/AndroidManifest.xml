@@ -11,6 +11,7 @@
         android:theme="@style/Theme.EarthGardener.Splash">
         <activity
             android:name=".presentation.user.signup.SignUpActivity"
+            android:theme="@style/Theme.EarthGardener"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
@@ -27,6 +28,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.MainActivity"
+            android:theme="@style/Theme.EarthGardener"
             android:exported="false">
         </activity>
 

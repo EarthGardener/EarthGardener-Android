@@ -37,6 +37,7 @@
 
 
     <string name="month">1월</string>
+    <string name="date">1/31</string>
     <string name="title">오늘의 기록 제목</string>
     <string name="point">250</string>
     <string name="exp">exp</string>

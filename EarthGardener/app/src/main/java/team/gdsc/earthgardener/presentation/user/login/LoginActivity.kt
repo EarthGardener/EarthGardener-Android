@@ -2,6 +2,7 @@ package team.gdsc.earthgardener.presentation.user.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import android.os.Bundle
 import android.widget.Toast
 import team.gdsc.earthgardener.R
@@ -13,6 +14,7 @@ import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         btnLoginEvent()
         btnSignUpEvent()
