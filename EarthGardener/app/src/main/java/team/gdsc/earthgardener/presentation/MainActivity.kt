@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViews()
+        setFloatingActionButton()
         initBottomNavigationView()
 
         binding.fabWrite.setOnClickListener {
@@ -36,6 +37,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    private fun setFloatingActionButton() {
+        binding.fabPost.setOnClickListener {
+            startActivity(Intent(this, PostFormActivity::class.java))
+        }
     }
 
     private fun initViews() {
