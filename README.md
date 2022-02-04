@@ -25,6 +25,9 @@
 ### 🍀 로그인
 <img src = "https://user-images.githubusercontent.com/81751105/152608279-bc2620b6-56d9-48f9-86f8-fa30d21aff0f.png" width = 250>      <img src = "https://user-images.githubusercontent.com/81751105/152608286-94faf5ed-6436-451c-b3e4-d21de96a6055.png" width = 250> 
 
+### 🍀 마이페이지
+<img src = "https://user-images.githubusercontent.com/81751105/152614777-0e485577-fd29-4e5e-8078-33acb611e50e.png" width = 250>
+
 
 노션첨부...?
 프로토타입으로 피그마 첨부..?
