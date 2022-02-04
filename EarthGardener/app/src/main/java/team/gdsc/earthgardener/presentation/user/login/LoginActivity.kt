@@ -1,11 +1,9 @@
 package team.gdsc.earthgardener.presentation.user.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,8 +11,7 @@ import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.ActivityLoginBinding
 import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_ACCESS_TOKEN
 import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.editor
-import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.sSharedPreferences
-import team.gdsc.earthgardener.presentation.MainActivity
+import team.gdsc.earthgardener.presentation.main.MainActivity
 import team.gdsc.earthgardener.presentation.base.BaseActivity
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
 import team.gdsc.earthgardener.presentation.user.signup.login.LoginRequest
