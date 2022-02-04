@@ -8,8 +8,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import team.gdsc.earthgardener.data.api.LoginService
-import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_ACCESS_TOKEN
-import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.sSharedPreferences
+
 
 val netWorkModule = module {
     single{

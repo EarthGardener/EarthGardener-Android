@@ -11,7 +11,7 @@ class EarthGardenerApplication: Application() {
         lateinit var sSharedPreferences: SharedPreferences
         lateinit var editor: SharedPreferences.Editor
 
-        val X_ACCESS_TOKEN = "X-ACCESS-TOKEN"
+        val X_AUTH_TOKEN = "X-AUTH-TOKEN"
     }
 
     override fun onCreate() {
