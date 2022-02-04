@@ -72,7 +72,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
                 binding.linearEmailCode.isVisible = true
 
                 // 통신 Get Code from email
-                checkEmailViewModel.email = binding.etSignUpEmail.text.toString()
+                checkEmailViewModel.email = binding.etSignUpEmail.text.toString().trim()
                 checkEmailViewModel.getEmail()
             }
         }
