@@ -25,8 +25,6 @@
   - AWS EC2 linux
   - RDS Mysql
   - Spring Boot F/W
-  - JPA
-  - JAVA
 
 
 ## 기획의도 
@@ -37,14 +35,13 @@
 ## Preview
 ### 🍀 회원가입
 
-<img src = "https://user-images.githubusercontent.com/81751105/152607213-12718982-25e8-4ac1-b371-d4dfcdda1a1f.png" width = 250>      <img src = "https://user-images.githubusercontent.com/81751105/152607626-a531d503-ef58-44f9-9fa4-ff4104d43277.png" width = 250>      <img src = "https://user-images.githubusercontent.com/81751105/152607619-4c9c28b9-35b4-4f8a-a738-8d8328752c3a.png" width = 250>
-
-<img src = "https://user-images.githubusercontent.com/81751105/152607931-de1519d4-19aa-427e-8fbd-4dc579a0eeeb.png" width = 250>      <img src = "https://user-images.githubusercontent.com/81751105/152608054-ee8b5c8f-d521-4e7d-8c54-436814556fce.png" width = 250>
-
+<img src = "https://user-images.githubusercontent.com/81751105/152621289-c3316d30-d11b-45e3-be3f-23c1a8ef9c0f.png" width = 800>
+<img src = "https://user-images.githubusercontent.com/81751105/152621368-522064c3-b621-450b-941a-b6b3d7e62961.png" width = 500>
 
 
 ### 🍀 로그인
-<img src = "https://user-images.githubusercontent.com/81751105/152608279-bc2620b6-56d9-48f9-86f8-fa30d21aff0f.png" width = 250>      <img src = "https://user-images.githubusercontent.com/81751105/152608286-94faf5ed-6436-451c-b3e4-d21de96a6055.png" width = 250> 
+<img src = "https://user-images.githubusercontent.com/81751105/152621422-97be2304-d652-485b-9a7d-9ea6eb1d1a2c.png" width = 500>  
+
 
 ### 🍀 마이페이지
 <img src = "https://user-images.githubusercontent.com/81751105/152614777-0e485577-fd29-4e5e-8078-33acb611e50e.png" width = 250>
