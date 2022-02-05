@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="21dp"
                         android:fontFamily="@font/suit_extra_bold"
-                        android:text="1/31"
+                        android:text="2/5"
                         android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

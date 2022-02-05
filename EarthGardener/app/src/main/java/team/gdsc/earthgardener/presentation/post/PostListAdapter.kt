@@ -31,13 +31,8 @@ class PostListAdapter: RecyclerView.Adapter<PostListAdapter.PostListViewHolder>(
         val binding: ItemPostDailyBinding
     ): RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: PostListData.PostList, position: Int) {
-
             Log.d("adapter-onbind", "$data")
             binding.postList = data
-
-            //Log.d("adapter-onBind", "${postlist.data}")
-            //Log.d("adapter-onBind", "${postlist.data[position]}")
-            //binding.postList = postlist.data[position]
             notifyDataSetChanged()
         }
     }

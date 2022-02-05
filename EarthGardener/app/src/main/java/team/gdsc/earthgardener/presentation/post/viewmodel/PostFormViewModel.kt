@@ -29,7 +29,7 @@ class PostFormViewModel(val postRepository: PostRepository) : ViewModel() {
     fun setPostList() : MutableLiveData<PostListData> {
         return _postlist
     }
-
+/*
     fun getPostList() = viewModelScope.launch {
         kotlin.runCatching { postRepository.getPostList(date = "2022-02") }
             .onSuccess {
@@ -41,7 +41,7 @@ class PostFormViewModel(val postRepository: PostRepository) : ViewModel() {
                 Log.d("post-postlist-server 성공", "$it")
             }
     }
-
+*/
     fun setCheckList() = viewModelScope.launch {
         kotlin.runCatching { postRepository.getCheckList() }
             .onSuccess {

@@ -18,5 +18,5 @@ val dataSourceModule = module {
     single<CheckNicknameDataSource> { CheckNicknameRemoteDataSource(get()) }
     single<TreeInfoDataSource> { TreeInfoRemoteDataSource(get()) }
     single<TreeNameDataSource> { TreeNameRemoteDataSource(get()) }
-    single<PostDataSource>{ PostLocalDataSource(get()) }
+    single<PostDataSource>{ PostRemoteDataSource(get()) }
 }

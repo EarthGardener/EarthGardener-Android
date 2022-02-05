@@ -1,5 +1,6 @@
 package team.gdsc.earthgardener.presentation.main.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,10 +8,16 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import team.gdsc.earthgardener.data.model.request.ReqTreeNameSuccessData
 import team.gdsc.earthgardener.domain.model.tree.TreeInfoSuccessData
+import team.gdsc.earthgardener.domain.post.PostListData
+import team.gdsc.earthgardener.domain.post.PostRepository
 import team.gdsc.earthgardener.domain.repository.tree.TreeInfoRepository
 import team.gdsc.earthgardener.domain.repository.tree.TreeNameRepository
 
-class MainViewModel(private val treeInfoRepository: TreeInfoRepository, private val treeNameRepository: TreeNameRepository) : ViewModel() {
+class MainViewModel(
+    private val treeInfoRepository: TreeInfoRepository,
+    private val treeNameRepository: TreeNameRepository,
+    private val postRepository: PostRepository
+) : ViewModel() {
 
     private var _treeInfo = MutableLiveData<TreeInfoSuccessData.TreeInfo>()
     val treeInfo: LiveData<TreeInfoSuccessData.TreeInfo> = _treeInfo
@@ -20,6 +27,9 @@ class MainViewModel(private val treeInfoRepository: TreeInfoRepository, private 
 
     private var _userNickName = MutableLiveData<String>()
     val userNickName: LiveData<String> = _userNickName
+
+    private val _postlist = MutableLiveData<PostListData>()
+    val postlist: LiveData<PostListData> get() = _postlist
 
     private var _newTreeName: String = ""
     var newTreeName: String = _newTreeName
@@ -34,6 +44,18 @@ class MainViewModel(private val treeInfoRepository: TreeInfoRepository, private 
             _token = value
             field = value
         }
+
+    fun getPostList() = viewModelScope.launch {
+        kotlin.runCatching { postRepository.getPostList(date = "2022-02") }
+            .onSuccess {
+                _postlist.postValue(it)
+                Log.d("post-postlist-server 성공", "${it}")
+            }
+            .onFailure {
+                it.printStackTrace()
+                Log.d("post-postlist-server 성공", "$it")
+            }
+    }
 
     fun getTreeInfo() = viewModelScope.launch {
         runCatching { treeInfoRepository.getTreeInfoResult() }

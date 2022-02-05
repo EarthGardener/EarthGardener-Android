@@ -17,7 +17,7 @@
         android:theme="@style/Theme.EarthGardener.Splash">
         <activity
             android:name=".presentation.post.PostFormActivity"
-            android:theme="@style/Theme.AppCompat"
+            android:theme="@style/Theme.EarthGardener"
             android:exported="true" />
         <activity
             android:name=".presentation.user.signup.SignUpActivity"
@@ -33,12 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".presentation.post.PostFormActivity"
-            android:theme="@style/Theme.EarthGardener"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.main.MainActivity"
             android:theme="@style/Theme.EarthGardener"
             android:exported="true">
         </activity>

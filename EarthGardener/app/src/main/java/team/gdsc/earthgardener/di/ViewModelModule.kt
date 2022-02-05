@@ -10,6 +10,6 @@ import team.gdsc.earthgardener.presentation.user.signup.emailpw.viewModel.CheckE
 val viewModelModule = module {
     viewModel { CheckEmailViewModel(get()) }
     viewModel { CheckNicknameViewModel(get()) }
-    viewModel { MainViewModel(get(), get()) }
+    viewModel { MainViewModel(get(), get(), get()) }
     viewModel { PostFormViewModel(get()) }
 }

@@ -7,23 +7,25 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentPostBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
+import team.gdsc.earthgardener.presentation.main.viewmodel.MainViewModel
 import team.gdsc.earthgardener.presentation.post.viewmodel.PostFormViewModel
 
 class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
 
     private lateinit var postListAdapter:PostListAdapter
-    private val postFormViewModel: PostFormViewModel by sharedViewModel()
+    private val mainViewModel: MainViewModel by sharedViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        postFormViewModel.getPostList()
+        mainViewModel.getPostList()
         initPostListAdapter()
         attachAdapter()
     }
 
     private fun attachAdapter() {
-        postFormViewModel.postlist.observe(viewLifecycleOwner) {
+        postListAdapter = PostListAdapter()
+        mainViewModel.postlist.observe(viewLifecycleOwner) {
             Log.d("fragment-ovserve", "${it}")
             Log.d("fragment-ovserve-it.data", "${it.data}")
             postListAdapter.postList = it.data
