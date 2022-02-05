@@ -52,14 +52,14 @@ EarthGardener 서비스를 기획하게 되었습니다.
 
 <img src = "https://user-images.githubusercontent.com/81751105/152607931-de1519d4-19aa-427e-8fbd-4dc579a0eeeb.png" height = 500 width = 250>      <img src = "https://user-images.githubusercontent.com/81751105/152608054-ee8b5c8f-d521-4e7d-8c54-436814556fce.png" height = 500 width = 250>
 
-
-
 ### 🍀 로그인
 <img src = "https://user-images.githubusercontent.com/81751105/152608279-bc2620b6-56d9-48f9-86f8-fa30d21aff0f.png" height = 500 width = 250>      <img src = "https://user-images.githubusercontent.com/81751105/152608286-94faf5ed-6436-451c-b3e4-d21de96a6055.png" height = 500 width = 250> 
 
 ### 🍀 마이페이지
 <img src = "https://user-images.githubusercontent.com/81751105/152614777-0e485577-fd29-4e5e-8078-33acb611e50e.png" height = 500 width = 250>
 
+### 🍀 홈 화면
 
-노션첨부...?
-프로토타입으로 피그마 첨부..?
+<img src = "https://user-images.githubusercontent.com/51078673/152623113-c236f965-c42b-4296-9842-142c4e4f1c52.PNG" height = 500 width = 250>      <img src = "https://user-images.githubusercontent.com/51078673/152623123-5c435d84-35ae-4458-a09f-bf15e16bd1fd.PNG" height = 500 width = 250>      <img src = "https://user-images.githubusercontent.com/51078673/152623132-a347c1db-ba68-4ecb-b61f-f3c268a18de3.PNG" height = 500 width = 250>
+
+<img src = "https://user-images.githubusercontent.com/51078673/152623145-8710fd40-775b-4b83-b569-3d224655fb70.PNG" height = 500 width = 250>      <img src = "https://user-images.githubusercontent.com/51078673/152623157-34a78309-d3c0-4722-a5b7-bda5ada51306.PNG" height = 500 width = 250>
