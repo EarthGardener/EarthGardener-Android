@@ -32,11 +32,6 @@ class MainActivity : AppCompatActivity() {
         setFloatingActionButton()
         initBottomNavigationView()
 
-        binding.fabWrite.setOnClickListener {
-            val intent = Intent(this, PostFormActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 
     private fun setFloatingActionButton() {

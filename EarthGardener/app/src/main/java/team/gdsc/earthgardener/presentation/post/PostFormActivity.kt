@@ -31,6 +31,10 @@ class PostFormActivity : BaseActivity<ActivityPostFormBinding>(R.layout.activity
             // how to....................
         }
 
+        binding.tvSave.setOnClickListener {
+            // 뒤로 돌아가라....
+        }
+
 /*
         postFormViewModel.checklist.observe(this) {
             binding.checkList = postFormViewModel.checklist.value

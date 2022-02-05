@@ -1,7 +1,7 @@
 package team.gdsc.earthgardener.domain.post
 
 data class PostListData(
-    val data: MutableList<PostList>,
+    val data: List<PostList>,
 ) {
     data class PostList(
         val title: String,
