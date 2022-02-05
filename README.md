@@ -86,7 +86,7 @@ EarthGardener 서비스를 기획하게 되었습니다.
 
 - #### 서버
   - AWS EC2 linux
-  - RDS Mysql
+  - AWS RDS Mysql
   - Spring Boot F/W
   - JPA
   - JAVA
