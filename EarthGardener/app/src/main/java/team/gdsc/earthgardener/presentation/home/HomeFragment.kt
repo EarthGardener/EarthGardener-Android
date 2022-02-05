@@ -1,10 +1,14 @@
 package team.gdsc.earthgardener.presentation.home
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat.getDrawable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentHomeBinding
@@ -25,8 +29,73 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun observeViewModel() {
+        observeTreeLevelUp()
         observeUserNickName()
         observeTreeInfo()
+
+    }
+
+    private fun observeTreeLevelUp() {
+        homeViewModel.isLevelUp.observe(viewLifecycleOwner) { isLevelUp ->
+            if (isLevelUp) {
+                displayTreeNameDialog()
+            }
+        }
+    }
+
+    private fun initTreeNameDialog(): AlertDialog.Builder {
+        val view = View.inflate(context, R.layout.dialog_tree_name, null)
+        return AlertDialog.Builder(context)
+            .setCancelable(false)
+            .setView(view)
+    }
+
+    private fun displayTreeNameDialog() {
+
+        val dialogBuilder = initTreeNameDialog()
+
+        val dialog = dialogBuilder.create()
+        dialog.show()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        trackTreeNameTextChanged(dialog)
+
+    }
+
+    private fun trackTreeNameTextChanged(dialog: AlertDialog) {
+        val treeNameEditText = dialog.findViewById<EditText>(R.id.et_dialog_tree_name)
+        treeNameEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                saveNewTreeName(dialog)
+            }
+        })
+    }
+
+    private fun saveNewTreeName(dialog: AlertDialog) {
+        val saveButton = dialog.findViewById<AppCompatButton>(R.id.btn_save_name)
+
+        saveButton.isEnabled = true
+        saveButton.setBackgroundResource(R.drawable.rectangle_primary_green_radius_12)
+
+        saveButton.setOnClickListener {
+            val newTreeName =
+                dialog.findViewById<EditText>(R.id.et_dialog_tree_name).text.trim().toString()
+            postNewTreeName(newTreeName)
+            dialog.dismiss()
+        }
+    }
+
+    private fun postNewTreeName(newTreeName: String) {
+        homeViewModel.newTreeName = newTreeName
+        homeViewModel.postTreeName()
     }
 
     @SuppressLint("SetTextI18n")
@@ -45,7 +114,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             val treeMonthlySum = treeInfo.monthSum
 
             bindViews(treeName, treeLevel, treeExp, treeTotalSum, treeMonthlySum)
-
         }
     }
 
