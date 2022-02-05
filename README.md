@@ -25,6 +25,8 @@
   - AWS EC2 linux
   - RDS Mysql
   - Spring Boot F/W
+  - JPA
+  - JAVA
 
 
 ## 기획의도 
