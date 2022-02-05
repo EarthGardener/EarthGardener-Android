@@ -2,7 +2,7 @@
 - Team: 기후변화 멈춰조
 - Member: 이재성, 심채영, 김예진, 유정현
 
-## Contributor
+## 🌳 Contributor
 
 <table align="center">
   <tr align="center">
@@ -19,7 +19,7 @@
   </tr>
 </table>
 
-## 서비스 설명
+## 🌳 서비스 설명
 `EarthGardener`, `지구 정원사`는
 기후 변화를 야기하는 환경 파괴로 인해 점점 척박해져 가는 지구에 나무를 심듯</br>
 모두 함께 쉽게 환경에 이로운 행동을 할 수 있도록 동기부여를 해주는 앱입니다.</br>
@@ -28,7 +28,7 @@
 
 🌱지구 정원사에서 지구를 지키는 순간을 함께 기록하세요!🌱
 
-## 기획의도 
+## 🌳 기획의도 
 인간의 과도한 욕심으로 인해 지구 환경은 심각하게 오염되어 가고 있고 이에 따라 이상 기후 현상이 전세계적으로 발생하고 있습니다. </br>
 또한, 최근 코로나19의 영향으로 인해 일회용품 사용량이 증가하면서 이는 더욱 더 가속화 되고 있습니다.</br>
 주제에 대해 고민하던 중 인류가 환경을 파괴하는 가장 큰 이유는 </br>
@@ -38,12 +38,12 @@ EarthGardener 서비스를 기획하게 되었습니다.
 
 
 
-## 기대효과
+## 🌳 기대효과
 기후 변화의 원인들과 관련한 질문지를 통해 사용자들은 </br>
 자신이 기후 변화 예방에 기여하고 있는 본인의 하루 습관들을 기록함으로써 기후 변화 대응에 적극적으로 참여할 수 있게 됩니다. </br>
 저희 서비스의 본질적인 목표는 사용자들이 쉽고 재밌게, 자주 참여하도록 하는 것 입니다.
 
-## Preview
+## 🌳 Preview
 ### 🍀 회원가입
 
 <img src = "https://user-images.githubusercontent.com/81751105/152607213-12718982-25e8-4ac1-b371-d4dfcdda1a1f.png" height = 500 width = 250>      <img src = "https://user-images.githubusercontent.com/81751105/152607626-a531d503-ef58-44f9-9fa4-ff4104d43277.png" height = 500 width = 250>      <img src = "https://user-images.githubusercontent.com/81751105/152607619-4c9c28b9-35b4-4f8a-a738-8d8328752c3a.png" height = 500 width = 250>
@@ -69,7 +69,7 @@ EarthGardener 서비스를 기획하게 되었습니다.
 <img src = "https://user-images.githubusercontent.com/62435316/152623308-4423c3e2-8428-43aa-931f-b62ed932d401.png" width = 250>
 
 
-## 사용한 기술스텍
+## 🌳 사용한 기술스텍
 - #### 안드로이드
 
 | **Architecture**            | MVVM                                                         |
