@@ -2,7 +2,7 @@ package team.gdsc.earthgardener.data.datasource.signup
 
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import team.gdsc.earthgardener.data.model.response.ResSignUpSuccessData
+import team.gdsc.earthgardener.data.model.response.signup.ResSignUpSuccessData
 
 interface SignUpDataSource {
     suspend fun postSignUp(

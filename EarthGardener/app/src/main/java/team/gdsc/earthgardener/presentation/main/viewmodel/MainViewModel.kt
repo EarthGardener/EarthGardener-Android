@@ -10,13 +10,16 @@ import team.gdsc.earthgardener.data.model.request.ReqTreeNameSuccessData
 import team.gdsc.earthgardener.domain.model.tree.TreeInfoSuccessData
 import team.gdsc.earthgardener.domain.post.PostListData
 import team.gdsc.earthgardener.domain.post.PostRepository
+import team.gdsc.earthgardener.domain.profile.ProfileData
+import team.gdsc.earthgardener.domain.profile.ProfileRepository
 import team.gdsc.earthgardener.domain.repository.tree.TreeInfoRepository
 import team.gdsc.earthgardener.domain.repository.tree.TreeNameRepository
 
 class MainViewModel(
     private val treeInfoRepository: TreeInfoRepository,
     private val treeNameRepository: TreeNameRepository,
-    private val postRepository: PostRepository
+    private val postRepository: PostRepository,
+    private val profileRepository: ProfileRepository
 ) : ViewModel() {
 
     private var _treeInfo = MutableLiveData<TreeInfoSuccessData.TreeInfo>()
@@ -30,6 +33,9 @@ class MainViewModel(
 
     private val _postlist = MutableLiveData<PostListData>()
     val postlist: LiveData<PostListData> get() = _postlist
+
+    private val _profile = MutableLiveData<ProfileData.ProfileInfo>()
+    val profile : LiveData<ProfileData.ProfileInfo> = _profile
 
     private var _newTreeName: String = ""
     var newTreeName: String = _newTreeName
@@ -76,6 +82,16 @@ class MainViewModel(
         runCatching { treeNameRepository.postTreeName(ReqTreeNameSuccessData(_newTreeName)) }
             .onSuccess {
                 _isLevelUp.postValue(false)
+            }
+            .onFailure {
+                it.printStackTrace()
+            }
+    }
+
+    fun getProfile() = viewModelScope.launch {
+        runCatching{ profileRepository.getProfileResult()}
+            .onSuccess { profileRepository ->
+                _profile.postValue(profileRepository.data)
             }
             .onFailure {
                 it.printStackTrace()

@@ -3,7 +3,7 @@ package team.gdsc.earthgardener.data.datasource.signup
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import team.gdsc.earthgardener.data.api.LoginService
-import team.gdsc.earthgardener.data.model.response.ResSignUpSuccessData
+import team.gdsc.earthgardener.data.model.response.signup.ResSignUpSuccessData
 
 class SignUpRemoteDataSource(private val loginService: LoginService)
     :SignUpDataSource{

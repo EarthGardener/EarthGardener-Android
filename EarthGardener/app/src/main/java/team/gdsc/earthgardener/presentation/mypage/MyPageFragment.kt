@@ -7,48 +7,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentMyPageBinding
-import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_ACCESS_TOKEN
-import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.sSharedPreferences
+
 import team.gdsc.earthgardener.presentation.base.BaseFragment
-import team.gdsc.earthgardener.presentation.mypage.retrofit.ProfileResponse
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitClient
+import team.gdsc.earthgardener.presentation.main.viewmodel.MainViewModel
+
+
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page){
+
+    private val profileModel: MainViewModel by sharedViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getProfileData(sSharedPreferences.getString(X_ACCESS_TOKEN, null)!!)
+        profileModel.getProfile()
+        observeProfile()
     }
 
-
-    private fun getProfileData(token: String){
-        val profileInterface = SignUpRetrofitClient.sRetrofit.create(MyPageRetrofitInterface::class.java)
-
-        profileInterface.getProfile(token).enqueue(object: Callback<ProfileResponse> {
-            override fun onResponse(
-                call: Call<ProfileResponse>,
-                response: Response<ProfileResponse>
-            ) {
-                if(response.isSuccessful){
-                    binding.tvMyPageNickname.text = response.body()?.data?.nickname
-                    Glide.with(context!!)
-                        .load("http://52.78.175.39:8080" + response.body()?.data?.image_url)
-                        .into(binding.ivMyPageUser)
-                }else{
-                    Log.d("fail", "error code ${response.code()}")
-                }
-            }
-
-            override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
-                Log.d("onFailure", t.message ?: "통신오류")
-            }
-
-        })
+    private fun observeProfile(){
+        profileModel.profile.observe(viewLifecycleOwner){
+            binding.tvMyPageNickname.text = it.nickname
+            Glide.with(context!!)
+                .load("http://52.78.175.39:8080" + it.image_url)
+                .into(binding.ivMyPageUser)
+        }
     }
 }
