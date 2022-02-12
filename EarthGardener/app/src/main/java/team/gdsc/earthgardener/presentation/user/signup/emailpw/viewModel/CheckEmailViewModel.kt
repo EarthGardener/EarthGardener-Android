@@ -7,7 +7,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import team.gdsc.earthgardener.domain.email.CheckEmailRepository
 
-class CheckEmailViewModel(private val checkEmailRepository: CheckEmailRepository): ViewModel() {
+class CheckEmailViewModel(private val checkEmailRepository: CheckEmailRepository)
+    : ViewModel() {
 
     private val _currentEmail = MutableLiveData<String>()
     val currentEmail : LiveData<String>

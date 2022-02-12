@@ -1,7 +1,7 @@
-package team.gdsc.earthgardener.data.repository
+package team.gdsc.earthgardener.data.repository.signup
 
-import team.gdsc.earthgardener.data.datasource.email.CheckEmailDataSource
-import team.gdsc.earthgardener.data.mapper.CheckEmailMapper
+import team.gdsc.earthgardener.data.datasource.signup.email.CheckEmailDataSource
+import team.gdsc.earthgardener.data.mapper.signup.CheckEmailMapper
 import team.gdsc.earthgardener.domain.email.CheckEmailData
 import team.gdsc.earthgardener.domain.email.CheckEmailRepository
 

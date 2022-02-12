@@ -1,6 +1,6 @@
-package team.gdsc.earthgardener.data.mapper
+package team.gdsc.earthgardener.data.mapper.signup
 
-import team.gdsc.earthgardener.data.model.response.ResCheckEmailSuccessData
+import team.gdsc.earthgardener.data.model.response.signup.ResCheckEmailSuccessData
 import team.gdsc.earthgardener.domain.email.CheckEmailData
 
 object CheckEmailMapper {

@@ -3,16 +3,18 @@ package team.gdsc.earthgardener.data.api
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
-import team.gdsc.earthgardener.data.model.response.ResCheckEmailSuccessData
-import team.gdsc.earthgardener.data.model.response.ResCheckNicknameSuccessData
-import team.gdsc.earthgardener.data.model.response.ResSignUpSuccessData
+import team.gdsc.earthgardener.data.model.request.signin.ReqSignInSuccessData
+import team.gdsc.earthgardener.data.model.response.signup.ResCheckEmailSuccessData
+import team.gdsc.earthgardener.data.model.response.signup.ResCheckNicknameSuccessData
+import team.gdsc.earthgardener.data.model.response.signin.ResSignInSuccessData
+import team.gdsc.earthgardener.data.model.response.signup.ResSignUpSuccessData
 
 interface LoginService {
     // Get Email Code
     @GET("user/signup/email")
     suspend fun getEmail(
         @Query("email") email: String
-    ):ResCheckEmailSuccessData
+    ): ResCheckEmailSuccessData
 
     // Get NickName
     @GET("user/signup/nickname")
@@ -29,4 +31,8 @@ interface LoginService {
     ): ResSignUpSuccessData
 
     // Post SignIn
+    @POST("user/signin")
+    suspend fun postSignIn(
+        @Body data: ReqSignInSuccessData
+    ): ResSignInSuccessData
 }

@@ -1,11 +1,8 @@
-package team.gdsc.earthgardener.data.model.response
+package team.gdsc.earthgardener.data.model.response.signup
 
 import com.google.gson.annotations.SerializedName
 
-data class ResCheckEmailSuccessData(
-    @SerializedName("code")
-    val code: String,
-
+data class ResSignUpSuccessData(
     @SerializedName("message")
     val message: String,
 

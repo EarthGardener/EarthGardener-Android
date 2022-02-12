@@ -12,18 +12,20 @@ import retrofit2.Callback
 import retrofit2.Response
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentMyPageBinding
-import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_ACCESS_TOKEN
+
+import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_AUTH_TOKEN
 import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.sSharedPreferences
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.mypage.retrofit.ProfileResponse
 import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitClient
+
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getProfileData(sSharedPreferences.getString(X_ACCESS_TOKEN, null)!!)
+        getProfileData(sSharedPreferences.getString(X_AUTH_TOKEN, null)!!)
     }
 
 

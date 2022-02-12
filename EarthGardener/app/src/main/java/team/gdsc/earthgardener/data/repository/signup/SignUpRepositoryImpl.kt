@@ -1,9 +1,9 @@
-package team.gdsc.earthgardener.data.repository
+package team.gdsc.earthgardener.data.repository.signup
 
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import team.gdsc.earthgardener.data.datasource.signup.SignUpDataSource
-import team.gdsc.earthgardener.data.mapper.SignUpMapper
+import team.gdsc.earthgardener.data.mapper.signup.SignUpMapper
 import team.gdsc.earthgardener.domain.signup.SignUpData
 import team.gdsc.earthgardener.domain.signup.SignUpRepository
 
