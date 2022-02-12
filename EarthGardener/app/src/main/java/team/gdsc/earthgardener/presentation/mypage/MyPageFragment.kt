@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,16 +17,20 @@ import team.gdsc.earthgardener.databinding.FragmentMyPageBinding
 import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_AUTH_TOKEN
 import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.sSharedPreferences
 import team.gdsc.earthgardener.presentation.base.BaseFragment
+import team.gdsc.earthgardener.presentation.main.viewmodel.MainViewModel
 import team.gdsc.earthgardener.presentation.mypage.retrofit.ProfileResponse
 import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitClient
 
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page){
 
+    private val profileModel: MainViewModel by sharedViewModel()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getProfileData(sSharedPreferences.getString(X_AUTH_TOKEN, null)!!)
+        profileModel.getProfile()
+        //getProfileData(sSharedPreferences.getString(X_AUTH_TOKEN, null)!!)
     }
 
 

@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import team.gdsc.earthgardener.data.api.LoginService
 import team.gdsc.earthgardener.data.api.TreeService
 import team.gdsc.earthgardener.data.api.PostService
+import team.gdsc.earthgardener.data.api.ProfileService
 
 
 val netWorkModule = module {
@@ -44,6 +45,10 @@ val netWorkModule = module {
 
     single<PostService>{
         get<Retrofit>().create(PostService::class.java)
+    }
+
+    single<ProfileService>{
+        get<Retrofit>().create(ProfileService::class.java)
     }
 
 }
