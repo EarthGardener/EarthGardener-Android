@@ -15,6 +15,8 @@ import team.gdsc.earthgardener.data.datasource.profile.ProfileDataSource
 import team.gdsc.earthgardener.data.datasource.profile.ProfileRemoteDataSource
 import team.gdsc.earthgardener.data.datasource.signin.SignInDataSource
 import team.gdsc.earthgardener.data.datasource.signin.SignInRemoteDataSource
+import team.gdsc.earthgardener.data.datasource.signup.SignUpDataSource
+import team.gdsc.earthgardener.data.datasource.signup.SignUpRemoteDataSource
 
 val dataSourceModule = module {
     single<CheckEmailDataSource> { CheckEmailRemoteDataSource(get()) }
@@ -24,4 +26,5 @@ val dataSourceModule = module {
     single<PostDataSource>{ PostRemoteDataSource(get()) }
     single<SignInDataSource>{ SignInRemoteDataSource(get()) }
     single<ProfileDataSource>{ ProfileRemoteDataSource(get())}
+    single<SignUpDataSource>{ SignUpRemoteDataSource(get())}
 }

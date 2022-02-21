@@ -1,5 +1,6 @@
 package team.gdsc.earthgardener.presentation.user.signup.emailpw
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentEmailPwBinding
@@ -16,11 +18,13 @@ import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.nickname.NickNameFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
 import team.gdsc.earthgardener.presentation.user.signup.emailpw.viewModel.CheckEmailViewModel
+import team.gdsc.earthgardener.presentation.user.signup.viewModel.SignUpViewModel
 import java.util.regex.Pattern
 
 class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_email_pw) {
 
-    private val checkEmailViewModel: CheckEmailViewModel by viewModel()
+    private val checkEmailViewModel: SignUpViewModel by sharedViewModel()
+
     private var emailCode: String?= null
     private var checkEmailCode = false
 
@@ -29,7 +33,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
         checkEmailPattern()
         checkEmailWatcher()
         getCodeEvent()
-        observeCheckEmailCode()
+        //observeCheckEmailCode()
         checkCode()
         etPasswordWatcher()
         btnNextEvent()
@@ -79,10 +83,12 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     }
 
     private fun observeCheckEmailCode(){
-        checkEmailViewModel.currentEmail.observe(this, Observer{
-            Log.d("code", it.toString())
-            emailCode = it.toString()
-        })
+        /*
+        checkEmailViewModel.currentEmail.observe(viewLifecycleOwner){
+            //emailCode = it.toString()
+        }
+
+         */
     }
 
     private fun checkCode(){

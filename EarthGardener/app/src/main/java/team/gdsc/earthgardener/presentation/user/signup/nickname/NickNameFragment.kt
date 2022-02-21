@@ -18,6 +18,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okio.BufferedSink
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,11 +32,14 @@ import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRequest
 import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpResponse
 import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitClient
 import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitInterface
+import team.gdsc.earthgardener.presentation.user.signup.viewModel.SignUpViewModel
 import java.lang.Exception
 
 class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment_nick_name) {
 
-    private val checkNicknameViewModel: CheckNicknameViewModel by viewModel()
+    private val signUpViewModel : SignUpViewModel by sharedViewModel()
+
+    //private val checkNicknameViewModel: CheckNicknameViewModel by viewModel()
     private val OPEN_GALLERY = 1
 
     private var email: String? =null
@@ -50,6 +54,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
         btnFinishActive()
         observeCheckNickname()
         btnFinishEvent()
+        observeSignUp()
 
         email = arguments!!.getString("email", "error")
         pw = arguments!!.getString("pw", "error")
@@ -126,13 +131,13 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
         signUpActivity.binding.btnNext.setOnClickListener {
             //signUpActivity.finish()
             // 먼저 닉네임 중복 여부 판단
-            checkNicknameViewModel.nickname = binding.etSignUpNickname.text.toString()
-            checkNicknameViewModel.getNickname()
+            signUpViewModel.nickname = binding.etSignUpNickname.text.toString()
+            signUpViewModel.getNickname()
         }
     }
 
     private fun observeCheckNickname(){
-        checkNicknameViewModel.currentStatus.observe(this, Observer{
+        signUpViewModel.currentStatus.observe(this, Observer{
             if(it.toString() == "200"){
                 // 회원가입 post하기
                     var requestEmail = RequestBody.create("text/plain".toMediaTypeOrNull(), email.toString())
@@ -143,12 +148,25 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
                 signUpMap["pw"] = requestPW
                 signUpMap["nickname"] = requestNickname
 
-                postSignUpData(signUpMap, img!!)
+                signUpViewModel.map = signUpMap
+                signUpViewModel.image = img!!
+                signUpViewModel.postSignUp()
+                //postSignUpData(signUpMap, img!!)
             }else if(it.toString() == "409"){
                 Toast.makeText(context, "이미 존재하는 닉네임입니다", Toast.LENGTH_SHORT).show()
                 binding.etSignUpNickname.text.clear()
             }
         })
+    }
+
+    private fun observeSignUp(){
+        signUpViewModel.isSignUp.observe(viewLifecycleOwner){
+            if(it){
+                Log.d("result", "success")
+                val signUpActivity = activity as SignUpActivity
+                signUpActivity.finish()
+            }
+        }
     }
 
     private fun postSignUpData(data: HashMap<String, RequestBody>, image: MultipartBody.Part){
