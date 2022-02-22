@@ -14,10 +14,14 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_earth_gardener_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EarthGardener.Splash">
+        android:theme="@style/Theme.EarthGardener.Splash"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
+        android:preserveLegacyExternalStorage="true">
         <activity
             android:name=".presentation.mypage.modifyProfile.ModifyProfileActivity"
             android:theme="@style/Theme.EarthGardener"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".presentation.post.PostFormActivity"

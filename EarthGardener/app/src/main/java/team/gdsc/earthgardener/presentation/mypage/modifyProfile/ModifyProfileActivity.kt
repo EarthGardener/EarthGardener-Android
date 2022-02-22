@@ -37,8 +37,7 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
         openGallery()
         btnModifyActive()
         putProfile()
-
-        Log.d("img", binding.ivModifyProfileUser.toString())
+        close()
     }
 
 
@@ -66,6 +65,9 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
                     val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageUrl)
                     binding.ivModifyProfileUser.setImageBitmap(bitmap)
                     changeToMultipart(bitmap)
+
+                    binding.btnModifyProfile.setBackgroundResource(R.drawable.rectangle_primary_green_radius_30)
+                    binding.btnModifyProfile.isEnabled = true
                 }catch (e: Exception){
                     e.printStackTrace()
                 }
@@ -92,31 +94,43 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
     }
 
     private fun btnModifyActive(){
-        binding.etModifyProfileNickname.addTextChangedListener(object: TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-            }
+            binding.etModifyProfileNickname.addTextChangedListener(object: TextWatcher{
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(binding.etModifyProfileNickname.text.isNotEmpty()){
-                    binding.btnModifyProfile.setBackgroundResource(R.drawable.rectangle_primary_green_radius_30)
-                    binding.btnModifyProfile.isEnabled = true
-                }else{
-                    binding.btnModifyProfile.setBackgroundResource(R.drawable.rectangle_light_gray_radius_30)
-                    binding.btnModifyProfile.isEnabled = false
                 }
-            }
 
-            override fun afterTextChanged(p0: Editable?) {
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    if(binding.etModifyProfileNickname.text.isNotEmpty()){
+                        if(binding.etModifyProfileNickname.text.equals(intent.getStringExtra("nickname"))){
+                            binding.btnModifyProfile.setBackgroundResource(R.drawable.rectangle_light_gray_radius_30)
+                            binding.btnModifyProfile.isEnabled = false
+                        }else{
+                            binding.btnModifyProfile.setBackgroundResource(R.drawable.rectangle_primary_green_radius_30)
+                            binding.btnModifyProfile.isEnabled = true
+                        }
+                    }else{
+                        binding.btnModifyProfile.setBackgroundResource(R.drawable.rectangle_light_gray_radius_30)
+                        binding.btnModifyProfile.isEnabled = false
+                    }
+                }
 
-            }
+                override fun afterTextChanged(p0: Editable?) {
 
-        })
+                }
+
+            })
+
     }
 
     private fun putProfile(){
         binding.btnModifyProfile.setOnClickListener {
             // 새로운 이미지 => bitmap보내고 아니면 이전 img_url 보내기
+            if(newImg == null){
+                // 이미지 변경 없는 경우
+            }else{
+                // 이미지 변경 있는 경우
+            }
 
             // put
 
@@ -124,5 +138,8 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
         }
     }
 
+    private fun close(){
+        binding.ivFinish.setOnClickListener { finish() }
+    }
 
 }
