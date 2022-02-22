@@ -153,7 +153,6 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
 
     private fun postSignUpData(data: HashMap<String, RequestBody>, image: MultipartBody.Part){
         val signUpInterface = SignUpRetrofitClient.sRetrofit.create(SignUpRetrofitInterface::class.java)
-        Log.d("signup", "hi")
 
         signUpInterface.postSignUp(data, image).enqueue(object: Callback<SignUpResponse> {
             override fun onResponse(
@@ -161,16 +160,16 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
                 response: Response<SignUpResponse>
             ) {
                 if(response.isSuccessful){
-                    Log.d("result", "success")
+                    Log.d("signup", "success")
                     val signUpActivity = activity as SignUpActivity
                     signUpActivity.finish()
                 }else{
-                    Log.d("fail", "error code ${response.code()}")
+                    Log.d("signup", "error code ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                Log.d("onFailure", t.message ?: "통신오류")
+                Log.d("signup", t.message ?: "통신오류")
             }
         })
     }
