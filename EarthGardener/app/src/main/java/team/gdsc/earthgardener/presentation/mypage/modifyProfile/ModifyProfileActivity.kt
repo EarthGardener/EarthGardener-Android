@@ -24,10 +24,18 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okio.BufferedSink
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.ActivityModifyProfileBinding
+import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_AUTH_TOKEN
+import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.sSharedPreferences
 import team.gdsc.earthgardener.presentation.base.BaseActivity
+import team.gdsc.earthgardener.presentation.mypage.modifyProfile.retrofit.ModifyProfileResponse
+import team.gdsc.earthgardener.presentation.mypage.modifyProfile.retrofit.ModifyProfileRetrofitInterface
 import team.gdsc.earthgardener.presentation.mypage.modifyProfile.viewmodel.ModifyProfileViewModel
+import team.gdsc.earthgardener.presentation.user.signup.retrofit.RetrofitClient
 import java.io.IOException
 import java.lang.Exception
 import java.net.HttpURLConnection
@@ -35,13 +43,14 @@ import java.net.URL
 
 class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layout.activity_modify_profile) {
 
-    private val modifyProfileModel : ModifyProfileViewModel by viewModel()
+    //private val modifyProfileModel : ModifyProfileViewModel by viewModel()
 
     private val OPEN_GALLERY = 1
 
     var newNickname : String ?= null
     var newImg : MultipartBody.Part?= null
     var profileMap = HashMap<String, RequestBody>()
+    var check_img = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +58,7 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
         openGallery()
         btnModifyActive()
         putProfile()
-        observeProfile()
+        //observeProfile()
         close()
     }
 
@@ -94,8 +103,10 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
             MultipartBody.Part.createFormData("image", ".png", bitmapRequestBody)
 
         newImg = bitmapMultipartBody
-        // Post bitmapMultipartBody
         Log.d("bitmap_", newImg.toString())
+        if(check_img){
+            getProfileData(sSharedPreferences.getString(X_AUTH_TOKEN, null)!!, newImg!!, profileMap)
+        }
     }
 
     inner class NewBitmapRequestBody(private val bitmap: Bitmap): RequestBody(){
@@ -150,28 +161,36 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
 
     private fun putProfile(){
         binding.btnModifyProfile.setOnClickListener {
+            newNickname = binding.etModifyProfileNickname.text.toString()
+            var nickname = RequestBody.create("text/plain".toMediaTypeOrNull(),newNickname!!)
+            profileMap["nickname"] = nickname
+
+
             // 새로운 이미지 => bitmap보내고 아니면 이전 img_url 보내기
             if(newImg == null){
+                check_img = true
+
                 // 이미지 변경 없는 경우
                 lifecycleScope.launch(Dispatchers.IO){
                     val bitmap = convertBitmapFromURL("http://52.78.175.39:8080" + intent.getStringExtra("img"))
                     changeToMultipart(bitmap!!)
                 }
+
+            }else{
+                check_img = false
+                getProfileData(sSharedPreferences.getString(X_AUTH_TOKEN, null)!!, newImg!!, profileMap)
             }
-
-            newNickname = binding.etModifyProfileNickname.text.toString()
-            var nickname = RequestBody.create("text/plain".toMediaTypeOrNull(),newNickname!!)
-            profileMap["nickname"] = nickname
-
+            
             // put
-            modifyProfileModel.image = newImg!!
-            modifyProfileModel.map = profileMap
-            modifyProfileModel.putProfile()
+            //modifyProfileModel.image = newImg!!
+            //modifyProfileModel.map = profileMap
+            //modifyProfileModel.putProfile()
 
             // 성공시 finish()
         }
     }
 
+    /*
     private fun observeProfile(){
         modifyProfileModel.status.observe(this, Observer {
             if(it.toString() == "200"){
@@ -180,6 +199,31 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
             }else if(it.toString() == "409"){
                 Toast.makeText(this, "이미지 크기가 큽니다", Toast.LENGTH_SHORT).show()
             }
+        })
+    }
+
+     */
+
+    private fun getProfileData(token: String, image: MultipartBody.Part, data: HashMap<String, RequestBody>){
+        val modifyProfilInterface = RetrofitClient.sRetrofit.create(ModifyProfileRetrofitInterface::class.java)
+
+        modifyProfilInterface.putProfile(token, image, data).enqueue(object: Callback<ModifyProfileResponse> {
+            override fun onResponse(
+                call: Call<ModifyProfileResponse>,
+                response: Response<ModifyProfileResponse>
+            ) {
+                if(response.isSuccessful){
+                    Log.d("회원정보 수정", "success")
+                    finish()
+                }else{
+                    Log.d("회원정보 수정", "fail ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ModifyProfileResponse>, t: Throwable) {
+                Log.d("signup", t.message ?: "통신오류")
+            }
+
         })
     }
 

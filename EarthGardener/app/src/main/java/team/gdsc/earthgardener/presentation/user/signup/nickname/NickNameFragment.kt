@@ -27,9 +27,8 @@ import team.gdsc.earthgardener.databinding.FragmentNickNameBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
 import team.gdsc.earthgardener.presentation.user.signup.nickname.viewModel.CheckNicknameViewModel
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRequest
 import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpResponse
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitClient
+import team.gdsc.earthgardener.presentation.user.signup.retrofit.RetrofitClient
 import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitInterface
 import java.lang.Exception
 
@@ -152,7 +151,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
     }
 
     private fun postSignUpData(data: HashMap<String, RequestBody>, image: MultipartBody.Part){
-        val signUpInterface = SignUpRetrofitClient.sRetrofit.create(SignUpRetrofitInterface::class.java)
+        val signUpInterface = RetrofitClient.sRetrofit.create(SignUpRetrofitInterface::class.java)
 
         signUpInterface.postSignUp(data, image).enqueue(object: Callback<SignUpResponse> {
             override fun onResponse(
