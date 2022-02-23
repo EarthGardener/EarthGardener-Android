@@ -5,5 +5,5 @@ import okhttp3.RequestBody
 import team.gdsc.earthgardener.data.model.response.profile.ResModifyProfileSuccessData
 
 interface ModifyProfileDataSource {
-    suspend fun putProfile(data: HashMap<String, RequestBody>, image: MultipartBody.Part): ResModifyProfileSuccessData
+    suspend fun putProfile(image: MultipartBody.Part,data: HashMap<String, RequestBody>): ResModifyProfileSuccessData
 }

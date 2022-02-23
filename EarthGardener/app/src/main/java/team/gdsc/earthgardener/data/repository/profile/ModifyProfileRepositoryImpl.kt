@@ -10,10 +10,10 @@ import team.gdsc.earthgardener.domain.profile.modify.ModifyProfileRepository
 class ModifyProfileRepositoryImpl(private val modifyProfileDataSource: ModifyProfileDataSource)
     :ModifyProfileRepository{
     override suspend fun putModifyProfileResult(
-        data: HashMap<String, RequestBody>,
-        image: MultipartBody.Part
+        image: MultipartBody.Part,
+        data: HashMap<String, RequestBody>
     ): ModifyProfileData {
-        return ModifyProfileMapper.mapperModifyProfileSuccessData(modifyProfileDataSource.putProfile(data, image))
+        return ModifyProfileMapper.mapperModifyProfileSuccessData(modifyProfileDataSource.putProfile(image, data))
     }
 
 }

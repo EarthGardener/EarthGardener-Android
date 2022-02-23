@@ -4,5 +4,5 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 interface ModifyProfileRepository {
-    suspend fun putModifyProfileResult(data: HashMap<String, RequestBody>, image: MultipartBody.Part): ModifyProfileData
+    suspend fun putModifyProfileResult(image: MultipartBody.Part, data: HashMap<String, RequestBody>): ModifyProfileData
 }

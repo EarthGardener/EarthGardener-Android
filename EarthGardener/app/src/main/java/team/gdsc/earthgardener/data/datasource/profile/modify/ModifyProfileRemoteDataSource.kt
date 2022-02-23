@@ -8,10 +8,9 @@ import team.gdsc.earthgardener.data.model.response.profile.ResModifyProfileSucce
 class ModifyProfileRemoteDataSource(private val profileService: ProfileService)
     :ModifyProfileDataSource{
     override suspend fun putProfile(
-        data: HashMap<String, RequestBody>,
-        image: MultipartBody.Part
+        image: MultipartBody.Part,
+        data: HashMap<String, RequestBody>
     ): ResModifyProfileSuccessData {
-        return profileService.putProfile(data, image)
+        return profileService.putProfile(image, data)
     }
-
 }

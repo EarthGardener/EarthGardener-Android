@@ -180,7 +180,7 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
                 check_img = false
                 getProfileData(sSharedPreferences.getString(X_AUTH_TOKEN, null)!!, newImg!!, profileMap)
             }
-            
+
             // put
             //modifyProfileModel.image = newImg!!
             //modifyProfileModel.map = profileMap

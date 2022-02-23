@@ -13,7 +13,7 @@ interface ProfileService {
     @Multipart
     @PUT("user/profile")
     suspend fun putProfile(
-        @PartMap data: HashMap<String, RequestBody>,
-        @Part image: MultipartBody.Part
+        @Part image: MultipartBody.Part,
+        @PartMap data: HashMap<String, RequestBody>
     ): ResModifyProfileSuccessData
 }

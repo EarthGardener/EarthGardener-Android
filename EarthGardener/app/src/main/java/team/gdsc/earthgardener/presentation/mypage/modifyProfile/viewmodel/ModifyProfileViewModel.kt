@@ -34,7 +34,7 @@ class ModifyProfileViewModel(
 
 
     fun putProfile() = viewModelScope.launch {
-        runCatching{ modifyProfileRepository.putModifyProfileResult(_map, _image)}
+        runCatching{ modifyProfileRepository.putModifyProfileResult(_image, _map)}
             .onSuccess {
                 _status.postValue(it.status)
                 Log.d("회원정보 수정", "success")
