@@ -33,6 +33,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
         checkEmailPattern()
         checkEmailWatcher()
         getCodeEvent()
+        observeCheckEmailIfSignedUp()
         observeCheckEmailCode()
         checkCode()
         etPasswordWatcher()
@@ -72,12 +73,17 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     private fun getCodeEvent(){
         binding.tvGetCode.setOnClickListener {
             if(checkEmailPattern()){
-                binding.tvCode.isVisible = true
-                binding.linearEmailCode.isVisible = true
-
                 // 통신 Get Code from email
                 checkEmailViewModel.email = binding.etSignUpEmail.text.toString().trim()
                 checkEmailViewModel.getEmail()
+            }
+        }
+    }
+
+    private fun observeCheckEmailIfSignedUp(){
+        checkEmailViewModel.emailStatus.observe(viewLifecycleOwner){
+            if(it == 409){
+                Toast.makeText(context, "이미 가입된 이메일입니다", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -86,6 +92,9 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
         checkEmailViewModel.currentCode.observe(viewLifecycleOwner){
             emailCode = it.toString()
             Log.d("emailCode", emailCode!!)
+
+            binding.tvCode.isVisible = true
+            binding.linearEmailCode.isVisible = true
         }
     }
 

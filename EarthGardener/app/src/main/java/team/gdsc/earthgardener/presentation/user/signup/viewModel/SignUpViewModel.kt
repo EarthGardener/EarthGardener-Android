@@ -24,6 +24,9 @@ class SignUpViewModel(
     private var _currentCode = MutableLiveData<String>()
     var currentCode : LiveData<String> = _currentCode
 
+    private var _emailStatus = MutableLiveData<Int>()
+    var emailStatus : LiveData<Int> = _emailStatus
+
     private var _email : String = ""
     var email: String = _email
         set(value){
@@ -69,10 +72,12 @@ class SignUpViewModel(
     fun getEmail() = viewModelScope.launch{
         runCatching{checkEmailRepository.getCheckEmailResult(_email)}
             .onSuccess {
+                _emailStatus.value = it.status
                 Log.d("currentCode", it.code)
                 _currentCode.value = it.code
             }
             .onFailure {
+                _emailStatus.value = 409
                 it.printStackTrace()
             }
     }
