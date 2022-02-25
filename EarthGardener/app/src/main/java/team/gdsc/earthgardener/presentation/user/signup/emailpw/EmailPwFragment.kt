@@ -33,7 +33,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
         checkEmailPattern()
         checkEmailWatcher()
         getCodeEvent()
-        //observeCheckEmailCode()
+        observeCheckEmailCode()
         checkCode()
         etPasswordWatcher()
         btnNextEvent()
@@ -83,12 +83,10 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     }
 
     private fun observeCheckEmailCode(){
-        /*
-        checkEmailViewModel.currentEmail.observe(viewLifecycleOwner){
-            //emailCode = it.toString()
+        checkEmailViewModel.currentCode.observe(viewLifecycleOwner){
+            emailCode = it.toString()
+            Log.d("emailCode", emailCode!!)
         }
-
-         */
     }
 
     private fun checkCode(){
@@ -137,8 +135,8 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
         val signUpActivity = activity as SignUpActivity
         signUpActivity.binding.btnNext.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("email", binding.etSignUpEmail.text.toString())
-            bundle.putString("pw", binding.etSignupPw.text.toString())
+            bundle.putString("email", binding.etSignUpEmail.text.toString().trim())
+            bundle.putString("pw", binding.etSignupPw.text.toString().trim())
 
             signUpActivity.binding.btnNext.text = getString(R.string.finish)
             signUpActivity.binding.btnNext.setBackgroundResource(R.drawable.rectangle_light_gray_radius_30)

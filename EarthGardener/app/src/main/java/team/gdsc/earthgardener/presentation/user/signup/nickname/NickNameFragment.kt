@@ -39,7 +39,6 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
 
     private val signUpViewModel : SignUpViewModel by sharedViewModel()
 
-    //private val checkNicknameViewModel: CheckNicknameViewModel by viewModel()
     private val OPEN_GALLERY = 1
 
     private var email: String? =null
@@ -50,14 +49,17 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initEmailPw()
         openGallery()
         btnFinishActive()
         observeCheckNickname()
         btnFinishEvent()
         observeSignUp()
+    }
 
-        email = arguments!!.getString("email", "error")
-        pw = arguments!!.getString("pw", "error")
+    private fun initEmailPw(){
+        email = arguments!!.getString("email", "error").trim()
+        pw = arguments!!.getString("pw", "error").trim()
     }
 
     private fun openGallery(){
@@ -129,20 +131,19 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
     private fun btnFinishEvent(){
         val signUpActivity = activity as SignUpActivity
         signUpActivity.binding.btnNext.setOnClickListener {
-            //signUpActivity.finish()
             // 먼저 닉네임 중복 여부 판단
-            signUpViewModel.nickname = binding.etSignUpNickname.text.toString()
+            signUpViewModel.nickname = binding.etSignUpNickname.text.toString().trim()
             signUpViewModel.getNickname()
         }
     }
 
     private fun observeCheckNickname(){
-        signUpViewModel.currentStatus.observe(this, Observer{
-            if(it.toString() == "200"){
+        signUpViewModel.checkNickname.observe(this, Observer{
+            if(it){
                 // 회원가입 post하기
                     var requestEmail = RequestBody.create("text/plain".toMediaTypeOrNull(), email.toString())
                     var requestPW = RequestBody.create("text/plain".toMediaTypeOrNull(), pw.toString())
-                    var requestNickname = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.etSignUpNickname.text.toString())
+                    var requestNickname = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.etSignUpNickname.text.toString().trim())
 
                 signUpMap["email"] = requestEmail
                 signUpMap["pw"] = requestPW
@@ -151,8 +152,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
                 signUpViewModel.map = signUpMap
                 signUpViewModel.image = img!!
                 signUpViewModel.postSignUp()
-                //postSignUpData(signUpMap, img!!)
-            }else if(it.toString() == "409"){
+            }else{
                 Toast.makeText(context, "이미 존재하는 닉네임입니다", Toast.LENGTH_SHORT).show()
                 binding.etSignUpNickname.text.clear()
             }
@@ -162,34 +162,10 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
     private fun observeSignUp(){
         signUpViewModel.isSignUp.observe(viewLifecycleOwner){
             if(it){
-                Log.d("result", "success")
+                Toast.makeText(context, "회원가입에 성공했습니다", Toast.LENGTH_SHORT).show()
                 val signUpActivity = activity as SignUpActivity
                 signUpActivity.finish()
             }
         }
-    }
-
-    private fun postSignUpData(data: HashMap<String, RequestBody>, image: MultipartBody.Part){
-        val signUpInterface = SignUpRetrofitClient.sRetrofit.create(SignUpRetrofitInterface::class.java)
-        Log.d("signup", "hi")
-
-        signUpInterface.postSignUp(data, image).enqueue(object: Callback<SignUpResponse> {
-            override fun onResponse(
-                call: Call<SignUpResponse>,
-                response: Response<SignUpResponse>
-            ) {
-                if(response.isSuccessful){
-                    Log.d("result", "success")
-                    val signUpActivity = activity as SignUpActivity
-                    signUpActivity.finish()
-                }else{
-                    Log.d("fail", "error code ${response.code()}")
-                }
-            }
-
-            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                Log.d("onFailure", t.message ?: "통신오류")
-            }
-        })
     }
 }
