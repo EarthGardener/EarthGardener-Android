@@ -26,5 +26,6 @@ val dataSourceModule = module {
     single<PostDataSource>{ PostRemoteDataSource(get()) }
     single<SignInDataSource>{ SignInRemoteDataSource(get()) }
     single<ProfileDataSource>{ ProfileRemoteDataSource(get())}
-    single<SignUpDataSource>{ SignUpRemoteDataSource(get())}
+    single<SignUpDataSource>{ SignUpRemoteDataSource(get()) }
+    single<ModifyProfileDataSource>{ ModifyProfileRemoteDataSource(get())}
 }

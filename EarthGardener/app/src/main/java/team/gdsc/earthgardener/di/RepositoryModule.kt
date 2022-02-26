@@ -26,5 +26,6 @@ val repositoryModule = module {
     single<PostRepository>{ PostRepositoryImpl(get()) }
     single<SignInRepository>{ SignInRepositoryImpl(get()) }
     single<ProfileRepository>{ ProfileRepositoryImpl(get())}
-    single<SignUpRepository>{ SignUpRepositoryImpl(get())}
+    single<SignUpRepository>{ SignUpRepositoryImpl(get()) }
+    single<ModifyProfileRepository>{ ModifyProfileRepositoryImpl(get())}
 }

@@ -27,7 +27,8 @@
     
     <!--MyPage-->
     <string name="my_page">마이페이지</string>
-    <string name="my_modify_account">계정 변경</string>
+    <string name="my_modify_profile">프로필 변경</string>
+    <string name="my_modify_pw">비밀번호 변경</string>
     <string name="my_push_alarm">푸시 알림</string>
     <string name="my_dark_mode">다크모드</string>
     <string name="my_require">문의하기</string>
@@ -68,5 +69,7 @@
     <string name="dialog_title">다음으로 키울 식물의\n이름을 정해주세요.</string>
     <string name="dialog_subtitle">나무를 완성할때 마다 정할 수 있어요.</string>
     <string name="dialog_hint_tree_name">나무 이름을 작성하세요</string>
+
+    <!-- Modify Profile -->
 
 </resources>
