@@ -2,7 +2,9 @@ package team.gdsc.earthgardener.presentation.user.signup.nickname
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,6 +14,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -27,13 +32,12 @@ import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentNickNameBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
-import team.gdsc.earthgardener.presentation.user.signup.nickname.viewModel.CheckNicknameViewModel
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRequest
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpResponse
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitClient
 import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitInterface
 import team.gdsc.earthgardener.presentation.user.signup.viewModel.SignUpViewModel
+import java.io.IOException
 import java.lang.Exception
+import java.net.HttpURLConnection
+import java.net.URL
 
 class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment_nick_name) {
 
@@ -43,6 +47,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
 
     private var email: String? =null
     private var pw: String? = null
+    private var check_img = false
 
     var signUpMap = HashMap<String, RequestBody>()
     var img : MultipartBody.Part?= null
@@ -92,7 +97,10 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
             MultipartBody.Part.createFormData("image", ".png", bitmapRequestBody)
 
         img = bitmapMultipartBody
-        // Post bitmapMultipartBody
+        if(check_img){
+            signUpViewModel.image = img!!
+            signUpViewModel.postSignUp()
+        }
     }
 
     inner class BitmapRequestBody(private val bitmap: Bitmap): RequestBody(){
@@ -150,8 +158,20 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
                 signUpMap["nickname"] = requestNickname
 
                 signUpViewModel.map = signUpMap
-                signUpViewModel.image = img!!
-                signUpViewModel.postSignUp()
+                // 이미지 여부 판단
+                if(img == null){
+                    // 기본이미지
+                    check_img = true
+                    val resources: Resources = this.resources
+                    val bitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_gallery)
+                    changeToMultipart(bitmap)
+                }else{
+                    check_img = false
+
+                    signUpViewModel.image = img!!
+                    signUpViewModel.postSignUp()
+                }
+
             }else if(it == 409){
                 Toast.makeText(context, "이미 존재하는 닉네임입니다", Toast.LENGTH_SHORT).show()
                 binding.etSignUpNickname.text.clear()
@@ -168,4 +188,5 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
             }
         }
     }
+
 }
