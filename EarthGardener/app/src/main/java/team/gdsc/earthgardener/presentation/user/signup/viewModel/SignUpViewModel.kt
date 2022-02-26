@@ -35,8 +35,8 @@ class SignUpViewModel(
         }
 
     // nickname
-    private var _checkNickname = MutableLiveData<Boolean>()
-    var checkNickname : LiveData<Boolean> = _checkNickname
+    private var _nicknameStatus = MutableLiveData<Int>()
+    var nicknameStatus: LiveData<Int> = _nicknameStatus
 
     private var _nickname: String = ""
     var nickname: String = _nickname
@@ -85,15 +85,10 @@ class SignUpViewModel(
     fun getNickname() = viewModelScope.launch{
         kotlin.runCatching { checkNicknameRepository.getCheckNicknameResult(_nickname) }
             .onSuccess {
-                if(it.status.toString().equals("200")){
-                    Log.d("닉네임", "success")
-                    _checkNickname.value = true
-                }else{
-                    Log.d("닉네임", "중복됨")
-                    _checkNickname.value = false
-                }
+                _nicknameStatus.value = it.status
             }
             .onFailure {
+                _nicknameStatus.value = 409
                 it.printStackTrace()
             }
     }

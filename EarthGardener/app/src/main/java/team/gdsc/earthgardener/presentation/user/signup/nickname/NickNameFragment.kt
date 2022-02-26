@@ -138,8 +138,8 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
     }
 
     private fun observeCheckNickname(){
-        signUpViewModel.checkNickname.observe(this, Observer{
-            if(it){
+        signUpViewModel.nicknameStatus.observe(this, Observer{
+            if(it == 200){
                 // 회원가입 post하기
                     var requestEmail = RequestBody.create("text/plain".toMediaTypeOrNull(), email.toString())
                     var requestPW = RequestBody.create("text/plain".toMediaTypeOrNull(), pw.toString())
@@ -152,7 +152,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
                 signUpViewModel.map = signUpMap
                 signUpViewModel.image = img!!
                 signUpViewModel.postSignUp()
-            }else{
+            }else if(it == 409){
                 Toast.makeText(context, "이미 존재하는 닉네임입니다", Toast.LENGTH_SHORT).show()
                 binding.etSignUpNickname.text.clear()
             }
