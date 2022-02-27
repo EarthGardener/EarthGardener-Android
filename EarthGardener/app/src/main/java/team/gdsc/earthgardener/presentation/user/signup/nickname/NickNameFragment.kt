@@ -32,7 +32,6 @@ import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentNickNameBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitInterface
 import team.gdsc.earthgardener.presentation.user.signup.viewModel.SignUpViewModel
 import java.io.IOException
 import java.lang.Exception

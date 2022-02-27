@@ -2,6 +2,9 @@ package team.gdsc.earthgardener.presentation.user.signup.emailpw
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -20,6 +23,7 @@ import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
 import team.gdsc.earthgardener.presentation.user.signup.emailpw.viewModel.CheckEmailViewModel
 import team.gdsc.earthgardener.presentation.user.signup.viewModel.SignUpViewModel
 import java.util.regex.Pattern
+import kotlin.concurrent.thread
 
 class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_email_pw) {
 
@@ -27,6 +31,9 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
 
     private var emailCode: String?= null
     private var checkEmailCode = false
+
+    private var totalTime = 0
+    private var started = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -90,11 +97,45 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
 
     private fun observeCheckEmailCode(){
         checkEmailViewModel.currentCode.observe(viewLifecycleOwner){
+            Toast.makeText(context, "해당 이메일로 인증 코드를 보냈습니다", Toast.LENGTH_SHORT).show()
+
             emailCode = it.toString()
             Log.d("emailCode", emailCode!!)
 
             binding.tvCode.isVisible = true
             binding.linearEmailCode.isVisible = true
+
+            totalTime = 60 * 3 // 3분
+            startEmailCodeTimer()
+        }
+    }
+
+    private fun startEmailCodeTimer(){
+        val handler = object: Handler(Looper.getMainLooper()){
+            override fun handleMessage(msg: Message) {
+                val minute = String.format("%02d", totalTime/60)
+                val second = String.format("%02d", totalTime%60)
+
+                binding.tvEmailTimer.text = "$minute:$second"
+
+                if(totalTime == 0){
+                    Toast.makeText(context, "이메일 코드를 다시 발급받으세요", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        started = true
+        thread(started){
+            while (started){
+                Thread.sleep(1000)
+                totalTime -= 1
+                handler.sendEmptyMessage(0)
+
+                if(totalTime == 0){
+                    totalTime = 0
+                    break
+                }
+            }
         }
     }
 
@@ -104,6 +145,13 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
             if(emailCode.equals(binding.etEmailCode.text.toString().trim())){
                 checkEmailCode = true
                 Toast.makeText(context, "인증에 성공했습니다", Toast.LENGTH_SHORT).show()
+
+                started = false
+                binding.tvEmailTimer.text = "00:00"
+
+                binding.tvGetCode.isEnabled = false
+                binding.tvCheckCode.isEnabled = false
+                binding.etSignUpEmail.isFocusableInTouchMode = false // 수정 불가
             }else{
                 Toast.makeText(context, "인증코드를 잘못 입력하셨습니다", Toast.LENGTH_SHORT).show()
                 binding.etEmailCode.text.clear()
@@ -141,6 +189,8 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     }
 
     private fun btnNextEvent(){
+        started = false
+
         val signUpActivity = activity as SignUpActivity
         signUpActivity.binding.btnNext.setOnClickListener {
             val bundle = Bundle()
