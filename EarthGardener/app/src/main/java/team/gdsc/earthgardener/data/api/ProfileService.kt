@@ -3,6 +3,8 @@ package team.gdsc.earthgardener.data.api
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
+import team.gdsc.earthgardener.data.model.request.password.ReqModifyPasswordSuccessData
+import team.gdsc.earthgardener.data.model.response.password.ResModifyPasswordSuccessData
 import team.gdsc.earthgardener.data.model.response.profile.ResModifyProfileSuccessData
 import team.gdsc.earthgardener.data.model.response.profile.ResProfileSuccessData
 
@@ -16,4 +18,9 @@ interface ProfileService {
         @Part image: MultipartBody.Part,
         @PartMap data: HashMap<String, RequestBody>
     ): ResModifyProfileSuccessData
+
+    @PUT("user/password")
+    suspend fun putPassword(
+        @Body data: ReqModifyPasswordSuccessData
+    ): ResModifyPasswordSuccessData
 }

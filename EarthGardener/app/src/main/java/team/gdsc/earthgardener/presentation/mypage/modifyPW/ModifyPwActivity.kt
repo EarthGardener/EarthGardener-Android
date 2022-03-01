@@ -6,11 +6,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.ActivityModifyPwBinding
 import team.gdsc.earthgardener.presentation.base.BaseActivity
+import team.gdsc.earthgardener.presentation.mypage.modifyPW.viewmodel.ModifyPasswordViewModel
 
 class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity_modify_pw) {
+
+    private val modifyPasswordModel: ModifyPasswordViewModel by viewModel()
 
     var checkOriginalPw = false
     var checkNewPw = false
@@ -22,6 +27,7 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
         checkNewPw()
         checkConfirmNewPw()
         modifyPW()
+        observePassword()
     }
 
     private fun btnModifyActive(){
@@ -91,10 +97,12 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
     private fun modifyPW(){
         binding.btnModifyPw.setOnClickListener {
             val check = checkPWIfEqual()
+            Log.d("check", check.toString())
             if(check){
                 // put
-
-                // 성공시 finish()
+                modifyPasswordModel.ori_pw = binding.etModifyOriginalPw.text.toString().trim()
+                modifyPasswordModel.new_pw = binding.etModifyNewPw.text.toString().trim()
+                modifyPasswordModel.putPassword()
             }else{
                 Toast.makeText(this, "새 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
             }
@@ -103,6 +111,19 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
 
     private fun checkPWIfEqual(): Boolean{
         // 새로운 pw == 새로운 pw 확인
-        return binding.etModifyNewPw.text.trim().equals(binding.etModifyConfirmNewPw.text.trim())
+        return binding.etModifyNewPw.text.toString().trim().equals(binding.etModifyConfirmNewPw.text.toString().trim())
+    }
+
+    private fun observePassword(){
+        modifyPasswordModel.currentStatus.observe(this, Observer{
+            if(it == 200){
+                // pw 변경 성공
+                Toast.makeText(this, "비밀번호가 변경되었습니다", Toast.LENGTH_SHORT).show()
+                finish()
+            }else if(it == 409){
+                // fail
+                Toast.makeText(this, "기존 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

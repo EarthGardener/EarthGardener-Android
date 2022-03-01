@@ -13,12 +13,15 @@ import team.gdsc.earthgardener.data.datasource.post.PostRemoteDataSource
 import team.gdsc.earthgardener.data.datasource.post.PostDataSource
 import team.gdsc.earthgardener.data.datasource.profile.ProfileDataSource
 import team.gdsc.earthgardener.data.datasource.profile.ProfileRemoteDataSource
-import team.gdsc.earthgardener.data.datasource.profile.modify.ModifyProfileDataSource
-import team.gdsc.earthgardener.data.datasource.profile.modify.ModifyProfileRemoteDataSource
+import team.gdsc.earthgardener.data.datasource.profile.modifypassword.ModifyPasswordDataSource
+import team.gdsc.earthgardener.data.datasource.profile.modifypassword.ModifyPasswordRemoteDataSource
+import team.gdsc.earthgardener.data.datasource.profile.modifyprofile.ModifyProfileDataSource
+import team.gdsc.earthgardener.data.datasource.profile.modifyprofile.ModifyProfileRemoteDataSource
 import team.gdsc.earthgardener.data.datasource.signin.SignInDataSource
 import team.gdsc.earthgardener.data.datasource.signin.SignInRemoteDataSource
 import team.gdsc.earthgardener.data.datasource.signup.SignUpDataSource
 import team.gdsc.earthgardener.data.datasource.signup.SignUpRemoteDataSource
+import team.gdsc.earthgardener.domain.profile.modifypassword.ModifyPasswordData
 
 val dataSourceModule = module {
     single<CheckEmailDataSource> { CheckEmailRemoteDataSource(get()) }
@@ -30,4 +33,5 @@ val dataSourceModule = module {
     single<ProfileDataSource>{ ProfileRemoteDataSource(get())}
     single<SignUpDataSource>{ SignUpRemoteDataSource(get()) }
     single<ModifyProfileDataSource>{ ModifyProfileRemoteDataSource(get()) }
+    single<ModifyPasswordDataSource>{ ModifyPasswordRemoteDataSource(get())}
 }

@@ -2,10 +2,10 @@ package team.gdsc.earthgardener.data.repository.profile
 
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import team.gdsc.earthgardener.data.datasource.profile.modify.ModifyProfileDataSource
+import team.gdsc.earthgardener.data.datasource.profile.modifyprofile.ModifyProfileDataSource
 import team.gdsc.earthgardener.data.mapper.profile.ModifyProfileMapper
-import team.gdsc.earthgardener.domain.profile.modify.ModifyProfileData
-import team.gdsc.earthgardener.domain.profile.modify.ModifyProfileRepository
+import team.gdsc.earthgardener.domain.profile.modifyprofile.ModifyProfileData
+import team.gdsc.earthgardener.domain.profile.modifyprofile.ModifyProfileRepository
 
 class ModifyProfileRepositoryImpl(private val modifyProfileDataSource: ModifyProfileDataSource)
     :ModifyProfileRepository{

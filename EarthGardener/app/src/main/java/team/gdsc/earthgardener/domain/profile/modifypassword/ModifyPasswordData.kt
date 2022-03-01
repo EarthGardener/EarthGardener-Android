@@ -1,8 +1,8 @@
-package team.gdsc.earthgardener.domain.profile.modify
+package team.gdsc.earthgardener.domain.profile.modifypassword
 
 import com.google.gson.annotations.SerializedName
 
-data class ModifyProfileData(
+data class ModifyPasswordData(
     @SerializedName("message")
     val message: String,
 

@@ -8,9 +8,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.Request
 import okhttp3.RequestBody
-import team.gdsc.earthgardener.domain.profile.modify.ModifyProfileRepository
+import team.gdsc.earthgardener.domain.profile.modifyprofile.ModifyProfileRepository
 
 class ModifyProfileViewModel(
     private val modifyProfileRepository: ModifyProfileRepository
