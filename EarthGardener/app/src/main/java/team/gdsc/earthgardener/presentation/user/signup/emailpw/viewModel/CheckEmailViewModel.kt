@@ -9,7 +9,7 @@ import team.gdsc.earthgardener.domain.email.CheckEmailRepository
 
 class CheckEmailViewModel(private val checkEmailRepository: CheckEmailRepository)
     : ViewModel() {
-
+    /*
     private val _currentEmail = MutableLiveData<String>()
     val currentEmail : LiveData<String>
         get() = _currentEmail
@@ -33,4 +33,6 @@ class CheckEmailViewModel(private val checkEmailRepository: CheckEmailRepository
                 it.printStackTrace()
             }
     }
+
+     */
 }

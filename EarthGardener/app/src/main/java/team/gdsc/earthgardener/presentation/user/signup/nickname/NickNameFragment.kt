@@ -2,7 +2,9 @@ package team.gdsc.earthgardener.presentation.user.signup.nickname
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,12 +14,16 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okio.BufferedSink
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,32 +32,38 @@ import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.FragmentNickNameBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
-import team.gdsc.earthgardener.presentation.user.signup.nickname.viewModel.CheckNicknameViewModel
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpResponse
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.RetrofitClient
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.SignUpRetrofitInterface
+import team.gdsc.earthgardener.presentation.user.signup.viewModel.SignUpViewModel
+import java.io.IOException
 import java.lang.Exception
+import java.net.HttpURLConnection
+import java.net.URL
 
 class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment_nick_name) {
 
-    private val checkNicknameViewModel: CheckNicknameViewModel by viewModel()
+    private val signUpViewModel : SignUpViewModel by sharedViewModel()
+
     private val OPEN_GALLERY = 1
 
     private var email: String? =null
     private var pw: String? = null
+    private var check_img = false
 
     var signUpMap = HashMap<String, RequestBody>()
     var img : MultipartBody.Part?= null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initEmailPw()
         openGallery()
         btnFinishActive()
         observeCheckNickname()
         btnFinishEvent()
+        observeSignUp()
+    }
 
-        email = arguments!!.getString("email", "error")
-        pw = arguments!!.getString("pw", "error")
+    private fun initEmailPw(){
+        email = arguments!!.getString("email", "error").trim()
+        pw = arguments!!.getString("pw", "error").trim()
     }
 
     private fun openGallery(){
@@ -84,7 +96,10 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
             MultipartBody.Part.createFormData("image", ".png", bitmapRequestBody)
 
         img = bitmapMultipartBody
-        // Post bitmapMultipartBody
+        if(check_img){
+            signUpViewModel.image = img!!
+            signUpViewModel.postSignUp()
+        }
     }
 
     inner class BitmapRequestBody(private val bitmap: Bitmap): RequestBody(){
@@ -123,53 +138,54 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
     private fun btnFinishEvent(){
         val signUpActivity = activity as SignUpActivity
         signUpActivity.binding.btnNext.setOnClickListener {
-            //signUpActivity.finish()
             // 먼저 닉네임 중복 여부 판단
-            checkNicknameViewModel.nickname = binding.etSignUpNickname.text.toString()
-            checkNicknameViewModel.getNickname()
+            signUpViewModel.nickname = binding.etSignUpNickname.text.toString().trim()
+            signUpViewModel.getNickname()
         }
     }
 
     private fun observeCheckNickname(){
-        checkNicknameViewModel.currentStatus.observe(this, Observer{
-            if(it.toString() == "200"){
+        signUpViewModel.nicknameStatus.observe(this, Observer{
+            if(it == 200){
                 // 회원가입 post하기
                     var requestEmail = RequestBody.create("text/plain".toMediaTypeOrNull(), email.toString())
                     var requestPW = RequestBody.create("text/plain".toMediaTypeOrNull(), pw.toString())
-                    var requestNickname = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.etSignUpNickname.text.toString())
+                    var requestNickname = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.etSignUpNickname.text.toString().trim())
 
                 signUpMap["email"] = requestEmail
                 signUpMap["pw"] = requestPW
                 signUpMap["nickname"] = requestNickname
 
-                postSignUpData(signUpMap, img!!)
-            }else if(it.toString() == "409"){
+                signUpViewModel.map = signUpMap
+                // 이미지 여부 판단
+                if(img == null){
+                    // 기본이미지
+                    check_img = true
+                    val resources: Resources = this.resources
+                    val bitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_gallery)
+                    changeToMultipart(bitmap)
+                }else{
+                    check_img = false
+
+                    signUpViewModel.image = img!!
+                    signUpViewModel.postSignUp()
+                }
+
+            }else if(it == 409){
                 Toast.makeText(context, "이미 존재하는 닉네임입니다", Toast.LENGTH_SHORT).show()
                 binding.etSignUpNickname.text.clear()
             }
         })
     }
 
-    private fun postSignUpData(data: HashMap<String, RequestBody>, image: MultipartBody.Part){
-        val signUpInterface = RetrofitClient.sRetrofit.create(SignUpRetrofitInterface::class.java)
-
-        signUpInterface.postSignUp(data, image).enqueue(object: Callback<SignUpResponse> {
-            override fun onResponse(
-                call: Call<SignUpResponse>,
-                response: Response<SignUpResponse>
-            ) {
-                if(response.isSuccessful){
-                    Log.d("signup", "success")
-                    val signUpActivity = activity as SignUpActivity
-                    signUpActivity.finish()
-                }else{
-                    Log.d("signup", "error code ${response.code()}")
-                }
+    private fun observeSignUp(){
+        signUpViewModel.isSignUp.observe(viewLifecycleOwner){
+            if(it){
+                Toast.makeText(context, "회원가입에 성공했습니다", Toast.LENGTH_SHORT).show()
+                val signUpActivity = activity as SignUpActivity
+                signUpActivity.finish()
             }
-
-            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                Log.d("signup", t.message ?: "통신오류")
-            }
-        })
+        }
     }
+
 }
