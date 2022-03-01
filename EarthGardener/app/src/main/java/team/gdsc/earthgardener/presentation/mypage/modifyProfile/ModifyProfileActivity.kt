@@ -33,7 +33,7 @@ import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_AUTH_TOKE
 import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.sSharedPreferences
 import team.gdsc.earthgardener.presentation.base.BaseActivity
 import team.gdsc.earthgardener.presentation.mypage.modifyProfile.viewmodel.ModifyProfileViewModel
-import team.gdsc.earthgardener.presentation.user.signup.retrofit.RetrofitClient
+
 import java.io.IOException
 import java.lang.Exception
 import java.net.HttpURLConnection
@@ -45,10 +45,10 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
 
     private val OPEN_GALLERY = 1
 
-    var newNickname : String ?= null
-    var newImg : MultipartBody.Part?= null
-    var profileMap = HashMap<String, RequestBody>()
-    var check_img = false
+    private var newNickname : String ?= null
+    private var newImg : MultipartBody.Part?= null
+    private var profileMap = HashMap<String, RequestBody>()
+    private var check_img = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
