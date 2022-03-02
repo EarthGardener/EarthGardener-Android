@@ -35,12 +35,14 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     override fun onStart() {
         super.onStart()
+        showLoadingDialog(context!!)
         profileModel.getProfile()
         observeProfile()
     }
 
     private fun observeProfile(){
         profileModel.profile.observe(viewLifecycleOwner){
+            dismissLoadingDialog()
             binding.tvMyPageNickname.text = it.nickname
             Glide.with(context!!)
                 .load("http://52.78.175.39:8080" + it.image_url)

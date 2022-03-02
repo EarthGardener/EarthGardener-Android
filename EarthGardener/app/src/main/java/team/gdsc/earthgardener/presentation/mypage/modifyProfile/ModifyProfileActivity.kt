@@ -160,6 +160,7 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
 
     private fun putProfile(){
         binding.btnModifyProfile.setOnClickListener {
+            showLoadingDialog(this)
             newNickname = binding.etModifyProfileNickname.text.toString()
             var nickname = RequestBody.create("text/plain".toMediaTypeOrNull(),newNickname!!)
             profileMap["nickname"] = nickname
@@ -188,6 +189,7 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
 
     private fun observeProfile(){
         modifyProfileModel.status.observe(this, Observer {
+            dismissLoadingDialog()
             if(it.toString() == "200"){
                 Toast.makeText(this, "회원정보 수정 성공", Toast.LENGTH_SHORT).show()
                 finish()

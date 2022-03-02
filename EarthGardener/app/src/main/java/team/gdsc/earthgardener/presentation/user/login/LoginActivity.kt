@@ -39,6 +39,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 val email = binding.etLoginEmail.text.toString().trim()
                 val pw = binding.etLoginPw.text.toString().trim()
 
+                showLoadingDialog(this)
                 // Post Login
                 signInViewModel.email = email
                 signInViewModel.pw = pw
@@ -62,6 +63,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun observeSignIn(){
         signInViewModel.isSignIn.observe(this, Observer {
+            dismissLoadingDialog()
             if(it){
                 navigateToMain()
             }else{
