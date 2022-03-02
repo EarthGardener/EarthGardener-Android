@@ -28,6 +28,7 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
         checkConfirmNewPw()
         modifyPW()
         observePassword()
+        close()
     }
 
     private fun btnModifyActive(){
@@ -125,5 +126,9 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
                 Toast.makeText(this, "기존 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun close(){
+        binding.ivFinish.setOnClickListener { finish() }
     }
 }
