@@ -1,4 +1,4 @@
-package team.gdsc.earthgardener.data.datasource.profile.modify
+package team.gdsc.earthgardener.data.datasource.profile.modifyprofile
 
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

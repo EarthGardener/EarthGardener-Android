@@ -24,7 +24,7 @@
     <string name="confirm_code">인증번호 확인</string>
     <string name="nickname">닉네임</string>
 
-    
+
     <!--MyPage-->
     <string name="my_page">마이페이지</string>
     <string name="my_modify_profile">프로필 변경</string>
@@ -70,6 +70,12 @@
     <string name="dialog_subtitle">나무를 완성할때 마다 정할 수 있어요.</string>
     <string name="dialog_hint_tree_name">나무 이름을 작성하세요</string>
 
-    <!-- Modify Profile -->
+    <!-- Modify Profile & PW -->
+    <string name="nickname_hint">닉네임을 입력해주세요</string>
+    <string name="origianl_pw">기존 비밀번호</string>
+    <string name="new_pw">새 비밀번호</string>
+    <string name="confirm_new_pw">비밀번호 확인</string>
+    <string name="original_pw_hint">기존 비밀번호를 입력해주세요</string>
+    <string name="new_pw_hint">새 비밀번호를 입력해주세요</string>
 
 </resources>
