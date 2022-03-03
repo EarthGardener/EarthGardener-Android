@@ -138,6 +138,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
     private fun btnFinishEvent(){
         val signUpActivity = activity as SignUpActivity
         signUpActivity.binding.btnNext.setOnClickListener {
+            showLoadingDialog(context!!)
             // 먼저 닉네임 중복 여부 판단
             signUpViewModel.nickname = binding.etSignUpNickname.text.toString().trim()
             signUpViewModel.getNickname()
@@ -146,6 +147,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
 
     private fun observeCheckNickname(){
         signUpViewModel.nicknameStatus.observe(this, Observer{
+
             if(it == 200){
                 // 회원가입 post하기
                     var requestEmail = RequestBody.create("text/plain".toMediaTypeOrNull(), email.toString())
@@ -172,6 +174,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
                 }
 
             }else if(it == 409){
+                dismissLoadingDialog()
                 Toast.makeText(context, "이미 존재하는 닉네임입니다", Toast.LENGTH_SHORT).show()
                 binding.etSignUpNickname.text.clear()
             }
@@ -180,6 +183,7 @@ class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment
 
     private fun observeSignUp(){
         signUpViewModel.isSignUp.observe(viewLifecycleOwner){
+            dismissLoadingDialog()
             if(it){
                 Toast.makeText(context, "회원가입에 성공했습니다", Toast.LENGTH_SHORT).show()
                 val signUpActivity = activity as SignUpActivity

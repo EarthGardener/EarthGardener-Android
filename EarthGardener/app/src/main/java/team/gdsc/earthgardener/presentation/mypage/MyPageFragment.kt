@@ -18,6 +18,7 @@ import team.gdsc.earthgardener.databinding.FragmentMyPageBinding
 
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.main.viewmodel.MainViewModel
+import team.gdsc.earthgardener.presentation.mypage.modifyPW.ModifyPwActivity
 import team.gdsc.earthgardener.presentation.mypage.modifyProfile.ModifyProfileActivity
 import team.gdsc.earthgardener.presentation.user.login.LoginActivity
 
@@ -31,16 +32,19 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigateToModifyProfile()
+        navigateToModifyPW()
     }
 
     override fun onStart() {
         super.onStart()
+        showLoadingDialog(context!!)
         profileModel.getProfile()
         observeProfile()
     }
 
     private fun observeProfile(){
         profileModel.profile.observe(viewLifecycleOwner){
+            dismissLoadingDialog()
             binding.tvMyPageNickname.text = it.nickname
             Glide.with(context!!)
                 .load("http://52.78.175.39:8080" + it.image_url)
@@ -56,6 +60,13 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             val intent = Intent(context, ModifyProfileActivity::class.java)
             intent.putExtra("nickname", nickname)
             intent.putExtra("img", img)
+            startActivity(intent)
+        }
+    }
+
+    private fun navigateToModifyPW(){
+        binding.tvModifyPw.setOnClickListener {
+            val intent = Intent(context, ModifyPwActivity::class.java)
             startActivity(intent)
         }
     }

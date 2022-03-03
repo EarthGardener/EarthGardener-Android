@@ -80,6 +80,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     private fun getCodeEvent(){
         binding.tvGetCode.setOnClickListener {
             if(checkEmailPattern()){
+                showLoadingDialog(context!!)
                 // 통신 Get Code from email
                 checkEmailViewModel.email = binding.etSignUpEmail.text.toString().trim()
                 checkEmailViewModel.getEmail()
@@ -90,6 +91,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
     private fun observeCheckEmailIfSignedUp(){
         checkEmailViewModel.emailStatus.observe(viewLifecycleOwner){
             if(it == 409){
+                dismissLoadingDialog()
                 Toast.makeText(context, "이미 가입된 이메일입니다", Toast.LENGTH_SHORT).show()
             }
         }
@@ -97,6 +99,7 @@ class EmailPwFragment : BaseFragment<FragmentEmailPwBinding>(R.layout.fragment_e
 
     private fun observeCheckEmailCode(){
         checkEmailViewModel.currentCode.observe(viewLifecycleOwner){
+            dismissLoadingDialog()
             Toast.makeText(context, "해당 이메일로 인증 코드를 보냈습니다", Toast.LENGTH_SHORT).show()
 
             emailCode = it.toString()

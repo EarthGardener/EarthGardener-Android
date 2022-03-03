@@ -1,5 +1,6 @@
 package team.gdsc.earthgardener.presentation.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import team.gdsc.earthgardener.util.LoadingDialog
 
 abstract class BaseFragment<T : ViewDataBinding>(
     @LayoutRes private val layoutRes: Int
@@ -15,6 +17,8 @@ abstract class BaseFragment<T : ViewDataBinding>(
 
     private var _binding: T? = null
     val binding get() = requireNotNull(_binding)
+
+    lateinit var mLoadingDialog: LoadingDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,5 +33,16 @@ abstract class BaseFragment<T : ViewDataBinding>(
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun showLoadingDialog(context: Context) {
+        mLoadingDialog = LoadingDialog(context)
+        mLoadingDialog.show()
+    }
+
+    fun dismissLoadingDialog() {
+        if (mLoadingDialog.isShowing) {
+            mLoadingDialog.dismiss()
+        }
     }
 }

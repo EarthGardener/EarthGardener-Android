@@ -6,6 +6,7 @@ import team.gdsc.earthgardener.data.repository.signup.CheckNicknameRepositoryImp
 import team.gdsc.earthgardener.data.repository.tree.TreeInfoRepositoryImpl
 import team.gdsc.earthgardener.data.repository.tree.TreeNameRepositoryImpl
 import team.gdsc.earthgardener.data.repository.PostRepositoryImpl
+import team.gdsc.earthgardener.data.repository.password.ModifyPasswordRepositoryImpl
 import team.gdsc.earthgardener.data.repository.profile.ModifyProfileRepositoryImpl
 import team.gdsc.earthgardener.data.repository.profile.ProfileRepositoryImpl
 import team.gdsc.earthgardener.data.repository.signin.SignInRepositoryImpl
@@ -16,7 +17,8 @@ import team.gdsc.earthgardener.domain.repository.tree.TreeInfoRepository
 import team.gdsc.earthgardener.domain.repository.tree.TreeNameRepository
 import team.gdsc.earthgardener.domain.post.PostRepository
 import team.gdsc.earthgardener.domain.profile.ProfileRepository
-import team.gdsc.earthgardener.domain.profile.modify.ModifyProfileRepository
+import team.gdsc.earthgardener.domain.profile.modifypassword.ModifyPasswordRepository
+import team.gdsc.earthgardener.domain.profile.modifyprofile.ModifyProfileRepository
 import team.gdsc.earthgardener.domain.signin.SignInRepository
 import team.gdsc.earthgardener.domain.signup.SignUpRepository
 
@@ -30,4 +32,5 @@ val repositoryModule = module {
     single<ProfileRepository>{ ProfileRepositoryImpl(get())}
     single<SignUpRepository>{ SignUpRepositoryImpl(get()) }
     single<ModifyProfileRepository>{ ModifyProfileRepositoryImpl(get()) }
+    single<ModifyPasswordRepository>{ModifyPasswordRepositoryImpl(get())}
 }
