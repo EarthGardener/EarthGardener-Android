@@ -36,36 +36,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         navigateToSignUp()
         observeSignIn()
         btnKakaoLoginEvent()
-
-        val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-            if(error != null){
-
-            }else{
-                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                finish()
-            }
-        }
-
-        UserApiClient.instance.accessTokenInfo{tokenInfo, error ->
-            if(error != null){
-                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
-            }else if(tokenInfo != null){
-                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                finish()
-            }
-        }
-
-        binding.btnKakaoLogin.setOnClickListener {
-            if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
-                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
-            }else{
-                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
-            }
-        }
     }
 
     private fun btnLoginEvent(){
@@ -116,8 +86,38 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun btnKakaoLoginEvent(){
+        val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+            if(error != null){
+
+            }else{
+                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                finish()
+            }
+        }
 
 
+        binding.btnKakaoLogin.setOnClickListener {
+            /*
+            회원 탈퇴 - 임시
+            UserApiClient.instance.unlink { error ->
+                if(error != null){
+                    Toast.makeText(this, "회원 탈퇴 실패", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this, "회원 탈퇴 성공", Toast.LENGTH_SHORT).show()
+                }
+            }
 
+             */
+
+            if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
+                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
+            }else{
+                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+            }
+
+             
+        }
     }
 }
