@@ -22,4 +22,6 @@
     <color name="any_gray">#9A9A9A</color>
     <color name="any_light_gray">#D4D4D4</color>
     <color name="background_white">#FFFFFF</color>
+
+    <color name="yellow">#FFEB34</color>
 </resources>

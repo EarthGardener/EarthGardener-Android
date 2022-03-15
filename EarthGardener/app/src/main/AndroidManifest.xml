@@ -49,6 +49,19 @@
             android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.EarthGardener" />
+
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao4d39f8358a445b85f6a3204e74bcd599"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

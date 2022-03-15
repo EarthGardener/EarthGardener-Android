@@ -64,6 +64,9 @@
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_post.xml" value="0.3302083333333333" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/item_post_daily.xml" value="0.4" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.5697916666666667" />
+        <entry key="app/src/main/res/drawable/iv_kakao_login.xml" value="0.165" />
+        <entry key="app/src/main/res/drawable/rectangle_yellow_radius_100.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.19671325683593752" />
       </map>
     </option>
   </component>

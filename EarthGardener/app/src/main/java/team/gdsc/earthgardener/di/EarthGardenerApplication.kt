@@ -2,6 +2,7 @@ package team.gdsc.earthgardener.di
 
 import android.app.Application
 import android.content.SharedPreferences
+import com.kakao.sdk.common.KakaoSdk
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -24,5 +25,6 @@ class EarthGardenerApplication: Application() {
             modules(netWorkModule, dataSourceModule, repositoryModule, viewModelModule)
         }
 
+        KakaoSdk.init(this, "4d39f8358a445b85f6a3204e74bcd599")
     }
 }
