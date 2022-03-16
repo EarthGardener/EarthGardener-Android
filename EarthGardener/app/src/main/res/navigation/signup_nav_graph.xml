@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/signup_nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signup_nav_graph"
+    app:startDestination="@id/firstSignupFragment">
 
+    <fragment
+        android:id="@+id/firstSignupFragment"
+        android:name="team.gdsc.earthgardener.FirstSignupFragment"
+        android:label="fragment_first_signup"
+        tools:layout="@layout/fragment_first_signup" />
+
+    <fragment
+        android:id="@+id/secondSignupFragment"
+        android:name="team.gdsc.earthgardener.SecondSignupFragment"
+        android:label="fragment_second_signup"
+        tools:layout="@layout/fragment_second_signup" />
 </navigation>

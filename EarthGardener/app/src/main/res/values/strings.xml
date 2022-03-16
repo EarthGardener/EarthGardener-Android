@@ -77,5 +77,7 @@
     <string name="confirm_new_pw">비밀번호 확인</string>
     <string name="original_pw_hint">기존 비밀번호를 입력해주세요</string>
     <string name="new_pw_hint">새 비밀번호를 입력해주세요</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
