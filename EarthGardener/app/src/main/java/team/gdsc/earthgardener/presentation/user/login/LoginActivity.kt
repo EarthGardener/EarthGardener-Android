@@ -7,18 +7,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.util.Utility
-import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.ActivityLoginBinding
-import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.editor
-
-
 import team.gdsc.earthgardener.presentation.main.MainActivity
 import team.gdsc.earthgardener.presentation.base.BaseActivity
 import team.gdsc.earthgardener.presentation.user.login.viewModel.SignInViewModel
@@ -86,10 +78,20 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun btnKakaoLoginEvent(){
+
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if(error != null){
 
             }else{
+
+                UserApiClient.instance.me{ user, error ->
+                    Log.d("id", user?.id.toString())
+                    Log.d("nickname", user?.kakaoAccount?.profile?.nickname.toString())
+                    Log.d("email", user?.kakaoAccount?.email.toString())
+                    Log.d("image_url", user?.kakaoAccount?.profile?.profileImageUrl.toString())
+                }
+
+
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -100,7 +102,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
         binding.btnKakaoLogin.setOnClickListener {
             /*
-            회원 탈퇴 - 임시
+            //회원 탈퇴 - 임시
             UserApiClient.instance.unlink { error ->
                 if(error != null){
                     Toast.makeText(this, "회원 탈퇴 실패", Toast.LENGTH_SHORT).show()
@@ -108,8 +110,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     Toast.makeText(this, "회원 탈퇴 성공", Toast.LENGTH_SHORT).show()
                 }
             }
+            */
 
-             */
 
             if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
                 UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
