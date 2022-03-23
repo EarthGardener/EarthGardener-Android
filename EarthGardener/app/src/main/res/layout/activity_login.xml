@@ -111,6 +111,25 @@
             app:layout_constraintStart_toEndOf="@+id/tv_login_sign_up"
             android:layout_marginTop="30dp"/>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_kakao_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/signup_kakao"
+            android:textColor="@color/text_black"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:fontFamily="@font/suit_medium"
+            android:background="@drawable/rectangle_yellow_radius_100"
+            android:drawableLeft="@drawable/iv_kakao_login"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="50dp"
+            android:stateListAnimator="@null"
+            app:layout_constraintTop_toBottomOf="@+id/tv_login_sign_up"
+            android:layout_marginTop="30dp"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
