@@ -96,4 +96,7 @@ dependencies {
 
     // kakao login
     implementation "com.kakao.sdk:v2-user:2.8.6" // 카카오 로그인
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }
