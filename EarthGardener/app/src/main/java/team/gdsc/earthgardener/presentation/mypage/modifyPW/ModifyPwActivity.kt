@@ -108,6 +108,7 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
                 ))
             }else{
                 Toast.makeText(this, "새 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
+                dismissLoadingDialog()
             }
         }
     }

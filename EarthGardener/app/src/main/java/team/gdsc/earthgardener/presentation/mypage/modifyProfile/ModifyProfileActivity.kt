@@ -103,8 +103,7 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
         newImg = bitmapMultipartBody
 
         if(check_img){
-            modifyProfileModel.image = newImg!!
-            modifyProfileModel.putProfile()
+            modifyProfileModel.putProfile(newImg!!, profileMap)
         }
     }
 
@@ -166,7 +165,6 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
             profileMap["nickname"] = nickname
 
             // put
-            modifyProfileModel.map = profileMap
             // 새로운 이미지 => bitmap보내고 아니면 이전 img_url 보내기
             if(newImg == null){
                 check_img = true
@@ -179,8 +177,7 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
 
             }else{
                 check_img = false
-                modifyProfileModel.image = newImg!!
-                modifyProfileModel.putProfile()
+                modifyProfileModel.putProfile(newImg!!, profileMap)
             }
             
         }
@@ -190,11 +187,13 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
     private fun observeProfile(){
         modifyProfileModel.status.observe(this, Observer {
             dismissLoadingDialog()
-            if(it.toString() == "200"){
-                Toast.makeText(this, "회원정보 수정 성공", Toast.LENGTH_SHORT).show()
+            if(it == 200){
+                Toast.makeText(this, "회원정보 업데이트 성공", Toast.LENGTH_SHORT).show()
                 finish()
-            }else if(it.toString() == "409"){
-                Toast.makeText(this, "이미지 크기가 큽니다", Toast.LENGTH_SHORT).show()
+            }else if(it == 409){
+                Toast.makeText(this, "5MB이하의 이미지만 등록할 수 있습니다", Toast.LENGTH_SHORT).show()
+            }else if(it == 401){
+                Toast.makeText(this, "오랫동안 접속하셨습니다. 다시 로그인해주세요", Toast.LENGTH_SHORT).show()
             }
         })
     }
