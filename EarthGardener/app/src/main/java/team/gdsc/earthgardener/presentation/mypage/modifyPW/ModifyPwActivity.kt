@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.gdsc.earthgardener.R
+import team.gdsc.earthgardener.data.model.request.password.ReqModifyPasswordSuccessData
 import team.gdsc.earthgardener.databinding.ActivityModifyPwBinding
 import team.gdsc.earthgardener.presentation.base.BaseActivity
 import team.gdsc.earthgardener.presentation.mypage.modifyPW.viewmodel.ModifyPasswordViewModel
@@ -102,9 +103,9 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
             Log.d("check", check.toString())
             if(check){
                 // put
-                modifyPasswordModel.ori_pw = binding.etModifyOriginalPw.text.toString().trim()
-                modifyPasswordModel.new_pw = binding.etModifyNewPw.text.toString().trim()
-                modifyPasswordModel.putPassword()
+                modifyPasswordModel.putPassword(ReqModifyPasswordSuccessData(
+                    binding.etModifyOriginalPw.text.toString().trim(), binding.etModifyNewPw.text.toString().trim()
+                ))
             }else{
                 Toast.makeText(this, "새 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
             }
@@ -117,17 +118,21 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
     }
 
     private fun observePassword(){
-        modifyPasswordModel.currentStatus.observe(this, Observer{
-            dismissLoadingDialog()
-            if(it == 200){
-                // pw 변경 성공
-                Toast.makeText(this, "비밀번호가 변경되었습니다", Toast.LENGTH_SHORT).show()
-                finish()
-            }else if(it == 409){
-                // fail
-                Toast.makeText(this, "기존 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show()
-            }
-        })
+         modifyPasswordModel.currentStatus.observe(this) {
+             dismissLoadingDialog()
+             when (it) {
+                 200 -> {
+                     Toast.makeText(this, "비밀번호 변경에 성공했습니다", Toast.LENGTH_SHORT).show()
+                     finish()
+                 }
+                 409 -> {
+                     Toast.makeText(this, "기존 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+                 }
+                 401 -> {
+                     Toast.makeText(this, "오랫동안 접속하셨습니다. 다시 로그인해주세요", Toast.LENGTH_SHORT).show()
+                 }
+             }
+         }
     }
 
     private fun close(){

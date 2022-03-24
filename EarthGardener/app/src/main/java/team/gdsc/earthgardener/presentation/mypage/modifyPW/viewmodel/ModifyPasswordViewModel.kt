@@ -5,39 +5,35 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import team.gdsc.earthgardener.data.model.request.password.ReqModifyPasswordSuccessData
 import team.gdsc.earthgardener.domain.profile.modifypassword.ModifyPasswordRepository
+import team.gdsc.earthgardener.domain.profile.modifypassword.usecase.ModifyPwUseCase
+import team.gdsc.earthgardener.util.ResultWrapper
+import team.gdsc.earthgardener.util.safeApiCall
+import timber.log.Timber
 
 class ModifyPasswordViewModel(
-    private val modifyPasswordRepository: ModifyPasswordRepository
+    private val modifyPasswordUseCase: ModifyPwUseCase
 ): ViewModel() {
 
-    private var _currentStatus = MutableLiveData<Int>()
-    val currentStatus : LiveData<Int> = _currentStatus
+    var currentStatus = MutableLiveData<Int>()
 
-    private var _ori_pw : String = ""
-    var ori_pw : String = _ori_pw
-        set(value){
-            _ori_pw = value
-            field = value
-        }
-
-    private var _new_pw : String = ""
-    var new_pw : String = _new_pw
-        set(value){
-            _new_pw = value
-            field = value
-        }
-
-    fun putPassword() = viewModelScope.launch {
-        runCatching{ modifyPasswordRepository.putModifyPasswordResult(ReqModifyPasswordSuccessData(_ori_pw, _new_pw))}
-            .onSuccess {
-                _currentStatus.value = it.status
+    fun putPassword(data: ReqModifyPasswordSuccessData) = viewModelScope.launch {
+        when(val responseData =
+            safeApiCall(Dispatchers.IO){modifyPasswordUseCase(data)}){
+            is ResultWrapper.Success -> {
+                Timber.d("putPassword : Success")
+                currentStatus.value = responseData.data.status
             }
-            .onFailure {
-                it.printStackTrace()
-                _currentStatus.value = 409
+            is ResultWrapper.NetworkError -> {
+                Timber.d("putPassword : Network Err")
             }
+            is ResultWrapper.GenericError -> {
+                Timber.d("putPassword : Generic Err")
+                currentStatus.value = responseData.code ?: 0
+            }
+        }
     }
 }
