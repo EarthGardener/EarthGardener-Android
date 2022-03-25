@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import team.gdsc.earthgardener.data.model.request.signin.ReqSignInSuccessData
+import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.X_AUTH_TOKEN
+import team.gdsc.earthgardener.di.EarthGardenerApplication.Companion.editor
 import team.gdsc.earthgardener.domain.signin.usecase.SignInUseCase
 import team.gdsc.earthgardener.util.ResultWrapper
 import team.gdsc.earthgardener.util.safeApiCall
@@ -18,13 +20,14 @@ class SignInViewModel(private val signInUseCase: SignInUseCase)
     private val _signInStatus = MutableLiveData<Int>()
     val signInStatus : LiveData<Int> = _signInStatus
 
-
     fun postSignIn(data: ReqSignInSuccessData) = viewModelScope.launch {
        when(val responseData =
            safeApiCall(Dispatchers.IO){ signInUseCase(data)}){
            is ResultWrapper.Success -> {
                Timber.d("postSignIn : Success")
                _signInStatus.value = 200
+               editor.putString(X_AUTH_TOKEN, responseData.data.token)
+               editor.commit()
            }
            is ResultWrapper.NetworkError -> {
                Timber.d("postSignIn : Network Err")
