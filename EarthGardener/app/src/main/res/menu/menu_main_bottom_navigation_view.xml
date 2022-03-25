@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/main_menu_home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home_24"
         android:title="@string/menu_home"/>
 
     <item
-        android:id="@+id/main_menu_post"
+        android:id="@+id/postFragment"
         android:icon="@drawable/ic_post_24"
         android:title="@string/menu_post"/>
 
     <item
-        android:id="@+id/main_menu_my_page"
+        android:id="@+id/myPageFragment"
         android:icon="@drawable/ic_user_24"
         android:title="@string/menu_my"/>
 

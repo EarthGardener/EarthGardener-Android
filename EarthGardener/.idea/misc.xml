@@ -6,15 +6,6 @@
         <entry key="..\:/EarthGardener/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_post_form.xml" value="0.159375" />
         <entry key="..\:/EarthGardener/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_post.xml" value="0.1339918946301925" />
         <entry key="..\:/EarthGardener/EarthGardener-Android/EarthGardener/app/src/main/res/layout/item_post_daily.xml" value="0.13677536231884058" />
-        <entry key="..\:/GitHub/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/GitHub/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_modify_profile.xml" value="0.25" />
-        <entry key="..\:/GitHub/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_modify_pw.xml" value="0.30867709815078237" />
-        <entry key="..\:/GitHub/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_modify_pwactivity.xml" value="0.36614583333333334" />
-        <entry key="..\:/GitHub/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_sign_up.xml" value="0.23697916666666666" />
-        <entry key="..\:/GitHub/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_email_pw.xml" value="0.22314814814814815" />
-        <entry key="..\:/GitHub/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
-        <entry key="..\:/GitHub/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_my_page.xml" value="0.23697916666666666" />
-        <entry key="..\:/GitHub/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_nick_name.xml" value="0.23697916666666666" />
         <entry key="..\:/Users/Jaesung/Desktop/EarthGardener/app/src/main/res/drawable/ic_article_24.xml" value="0.31574074074074077" />
         <entry key="..\:/Users/Jaesung/Desktop/EarthGardener/app/src/main/res/drawable/ic_home_24.xml" value="0.31574074074074077" />
         <entry key="..\:/Users/Jaesung/Desktop/EarthGardener/app/src/main/res/drawable/ic_user_24.xml" value="0.31574074074074077" />
@@ -27,42 +18,85 @@
         <entry key="..\:/Users/Jaesung/Desktop/EarthGardener/app/src/main/res/menu/menu_main_bottom_navigation_view.xml" value="0.3287037037037037" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/bg_home.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/bg_home_card.xml" value="0.3463541666666667" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/circle_black_size_1.xml" value="0.47982456140350876" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/circle_dark_green_border_2.xml" value="0.5444444444444444" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/circle_light_green_border_2.xml" value="0.5444444444444444" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/circle_light_light_green_border_2.xml" value="0.5444444444444444" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/circle_light_light_light_green_border_2.xml" value="0.29035087719298247" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/circle_primary_green_border_2.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/circle_white_size_25.xml" value="0.47982456140350876" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/circle_yellow_border_2.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_album.xml" value="0.47359307359307357" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_bg_home_card.xml" value="0.5444444444444444" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_camera.xml" value="0.22777777777777777" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_capture.xml" value="0.12149122807017544" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_check.xml" value="0.3574074074074074" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_check_gray_48.xml" value="0.3574074074074074" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_check_green_48.xml" value="0.47982456140350876" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_close.xml" value="0.22719298245614036" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_close_48.xml" value="0.22719298245614036" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_edit.xml" value="0.5697916666666667" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_home_24.xml" value="0.5697916666666667" />
-        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_left_arrow.xml" value="0.561025641025641" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_left_arrow.xml" value="0.264" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_logo_earthgardener.xml" value="0.5697916666666667" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_plus.xml" value="0.561025641025641" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_post_24.xml" value="0.5697916666666667" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_right_arrow.xml" value="0.4475" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/ic_user_24.xml" value="0.3351851851851852" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/img_tree_level_1.xml" value="0.3351851851851852" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/img_tree_level_2.xml" value="0.3351851851851852" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/img_tree_level_3.xml" value="0.3351851851851852" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/img_tree_level_4.xml" value="0.3351851851851852" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/img_tree_level_5.xml" value="0.561025641025641" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_background_white_radius_10_border_green.xml" value="0.226" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_background_white_radius_8.xml" value="0.125" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_background_white_radius_8_border_light_gray_1.xml" value="0.316" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_gray_height_1.xml" value="0.38385416666666666" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_light_gray_border_1.xml" value="0.47982456140350876" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_light_gray_radius_12.xml" value="0.43333333333333335" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_light_gray_radius_30.xml" value="0.226" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_light_gray_width_1.xml" value="0.47359307359307357" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_light_gray_width_60_height_25_radius_15.xml" value="0.5444444444444444" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_lightgreen_radius_30.xml" value="0.5444444444444444" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_mint_radius_20.xml" value="0.5444444444444444" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_primary_green_900_width_2.xml" value="0.47982456140350876" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_primary_green_border_10.xml" value="0.5444444444444444" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_primary_green_radius_12.xml" value="0.22719298245614036" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_primary_green_radius_20.xml" value="0.5697916666666667" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/rectangle_primary_green_width_60_height_25_radius_15.xml" value="0.226" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/round_primary_green_200_width_2.xml" value="0.226" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/round_primary_green_700_width_2.xml" value="0.226" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/selector_bottom_navi_color.xml" value="0.3527777777777778" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/selector_btn_check.xml" value="0.28055555555555556" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/selector_edit_text_tracker_green.xml" value="0.5697916666666667" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/selector_secondary_green_save.xml" value="0.5697916666666667" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/selector_switch_track.xml" value="0.47982456140350876" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/drawable/splash_background.xml" value="0.3458333333333333" />
-        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_main.xml" value="0.536" />
-        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_post_form.xml" value="0.3302083333333333" />
-        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_sign_up.xml" value="0.40398550724637683" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/font/font_suit.xml" value="0.23903508771929824" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_image_capture.xml" value="0.16" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_modify_profile.xml" value="0.22922022279348758" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_modify_pw.xml" value="0.22922022279348758" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_post_detail.xml" value="0.45394736842105265" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_post_form.xml" value="0.1" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/activity_splash.xml" value="0.5536458333333333" />
-        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/dialog_tree_name.xml" value="0.264" />
-        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_my_page.xml" value="0.3302083333333333" />
-        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_post.xml" value="0.3302083333333333" />
-        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/item_post_daily.xml" value="0.4" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/dialog_add_photo.xml" value="0.4" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/dialog_loading.xml" value="0.4662280701754386" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/dialog_post_exist.xml" value="0.264" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/dialog_tree_name.xml" value="0.536" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_blank.xml" value="0.4662280701754386" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_email_pw.xml" value="0.1" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_my_page.xml" value="0.1" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_nick_name.xml" value="0.1" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_post.xml" value="0.1" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_post_detail.xml" value="0.1" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/fragment_sample.xml" value="0.4662280701754386" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/item_post.xml" value="0.4" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/layout/item_post_daily.xml" value="0.264" />
+        <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/menu/menu_main_bottom_navigation_view.xml" value="0.4662280701754386" />
         <entry key="..\:/Users/Jaesung/Documents/GitRepo/Project/EarthGardener-Android/EarthGardener/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.5697916666666667" />
         <entry key="app/src/main/res/drawable/iv_kakao_login.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/rectangle_yellow_radius_100.xml" value="0.165" />
