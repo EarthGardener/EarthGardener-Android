@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -50,7 +52,8 @@ dependencies {
 
     // Glide
     implementation "com.github.bumptech.glide:glide:4.12.0"
-    annotationProcessor "com.github.bumptech.glide:compiler:4.12.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "com.github.bumptech.glide:compiler:4.12.0"
 
     // Retrofit2 + Gson + OkHttp3
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -67,18 +70,23 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.0-beta01"
 
     // Jetpack - Room
-    implementation "androidx.room:room-runtime:2.4.1"
-    annotationProcessor "androidx.room:room-compiler:2.4.1"
+    implementation "androidx.room:room-runtime:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
 
     // Jetpack - DataStore
     implementation "androidx.datastore:datastore-core:1.0.0"
     implementation "androidx.datastore:datastore-preferences-core:1.0.0"
 
+    // Jetpack - Navigation Component
+    implementation "androidx.navigation:navigation-ui-ktx:2.4.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.4.1"
+    androidTestImplementation "androidx.navigation:navigation-testing:2.4.1"
+
     // Jetpack - LifeCycle, ViewModel, LiveData
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.4.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.1"
 
     // Jetpack - Fragment
     implementation "androidx.fragment:fragment-ktx:1.4.1"
