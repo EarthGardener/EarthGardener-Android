@@ -1,5 +1,6 @@
 package team.gdsc.earthgardener.presentation.user.login
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import android.os.Bundle
@@ -29,6 +30,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         navigateToSignUp()
         observeSignIn()
         btnKakaoLoginEvent()
+        checkKakaoLogin()
     }
 
     private fun btnLoginEvent(){
@@ -78,11 +80,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun btnKakaoLoginEvent(){
-
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if(error != null){
-
+                Log.d("login", "정보 없음")
             }else{
+                Log.d("login", "카카오톡 로그인에 성공")
 
                 UserApiClient.instance.me{ user, error ->
                     Log.d("id", user?.id.toString())
@@ -91,16 +93,28 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     Log.d("image_url", user?.kakaoAccount?.profile?.profileImageUrl.toString())
                 }
 
-
+                // post 보내고 성공하면 아래 코드 실행
+                /*
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
+
+                 */
             }
         }
 
 
         binding.btnKakaoLogin.setOnClickListener {
+
+            if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
+                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
+            }else{
+                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+            }
+
+
+
             /*
             //회원 탈퇴 - 임시
             UserApiClient.instance.unlink { error ->
@@ -110,16 +124,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     Toast.makeText(this, "회원 탈퇴 성공", Toast.LENGTH_SHORT).show()
                 }
             }
-            */
+             */
 
+        }
+    }
 
-            if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
-                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
-            }else{
-                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+    private fun checkKakaoLogin(){
+        UserApiClient.instance.accessTokenInfo{ tokenInfo, error ->
+            if(error != null){
+                Toast.makeText(this, "로그인 정보 없음", Toast.LENGTH_SHORT).show()
+            }else if(tokenInfo != null){
+                // main으로 넘어가기
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                finish()
             }
-
-             
         }
     }
 }
