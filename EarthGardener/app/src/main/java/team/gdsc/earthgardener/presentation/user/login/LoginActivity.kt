@@ -11,6 +11,7 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.gdsc.earthgardener.R
+import team.gdsc.earthgardener.data.model.request.signin.ReqKakaoSignInSuccessData
 import team.gdsc.earthgardener.data.model.request.signin.ReqSignInSuccessData
 import team.gdsc.earthgardener.databinding.ActivityLoginBinding
 import team.gdsc.earthgardener.presentation.main.MainActivity
@@ -29,8 +30,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         btnLoginEvent()
         navigateToSignUp()
         observeSignIn()
+        observeKakaoSignIn()
         btnKakaoLoginEvent()
         checkKakaoLogin()
+        //logout()
     }
 
     private fun btnLoginEvent(){
@@ -71,6 +74,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }
     }
 
+    private fun observeKakaoSignIn(){
+        signInViewModel.kakaoSignInStatus.observe(this){
+            dismissLoadingDialog()
+            if (it == 200) {
+                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                navigateToMain()
+            } else if (it == 401) {
+                Toast.makeText(this, "소셜 로그인 실패", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     private fun checkEmailPattern(): Boolean {
         val email = binding.etLoginEmail.text.toString().trim()
@@ -87,35 +102,50 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 Log.d("login", "카카오톡 로그인에 성공")
 
                 UserApiClient.instance.me{ user, error ->
-                    Log.d("id", user?.id.toString())
-                    Log.d("nickname", user?.kakaoAccount?.profile?.nickname.toString())
-                    Log.d("email", user?.kakaoAccount?.email.toString())
-                    Log.d("image_url", user?.kakaoAccount?.profile?.profileImageUrl.toString())
+                    val id = user?.id.toString()
+                    val nickname = user?.kakaoAccount?.profile?.nickname.toString()
+                    var image = user?.kakaoAccount?.profile?.profileImageUrl
+
+                    if(image.isNullOrEmpty()){
+                        image = ""
+                    }
+
+                    Log.d("id", id)
+                    Log.d("nickname", nickname)
+                    Log.d("image",image)
+
+                    // Post
+                    showLoadingDialog(this)
+                    signInViewModel.postKakaoSignIn(ReqKakaoSignInSuccessData(id, nickname, image))
                 }
-
-                // post 보내고 성공하면 아래 코드 실행
-                /*
-                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                finish()
-
-                 */
             }
         }
 
 
         binding.btnKakaoLogin.setOnClickListener {
-
             if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
                 UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
             }else{
                 UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
+        }
+    }
 
+    private fun checkKakaoLogin(){
+        UserApiClient.instance.accessTokenInfo{ tokenInfo, error ->
+            if(error != null){
+                Log.d("login", "로그인 정보 없음")
+            }else if(tokenInfo != null){
+                // main으로 넘어가기
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                finish()
+            }
+        }
+    }
 
-
-            /*
+    private fun logout(){
+        binding.btnKakaoLogin.setOnClickListener {
             //회원 탈퇴 - 임시
             UserApiClient.instance.unlink { error ->
                 if(error != null){
@@ -123,21 +153,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 }else{
                     Toast.makeText(this, "회원 탈퇴 성공", Toast.LENGTH_SHORT).show()
                 }
-            }
-             */
-
-        }
-    }
-
-    private fun checkKakaoLogin(){
-        UserApiClient.instance.accessTokenInfo{ tokenInfo, error ->
-            if(error != null){
-                Toast.makeText(this, "로그인 정보 없음", Toast.LENGTH_SHORT).show()
-            }else if(tokenInfo != null){
-                // main으로 넘어가기
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                finish()
             }
         }
     }

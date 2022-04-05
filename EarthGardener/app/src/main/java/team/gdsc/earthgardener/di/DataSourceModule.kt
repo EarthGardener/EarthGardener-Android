@@ -19,6 +19,8 @@ import team.gdsc.earthgardener.data.datasource.profile.modifyprofile.ModifyProfi
 import team.gdsc.earthgardener.data.datasource.profile.modifyprofile.ModifyProfileRemoteDataSource
 import team.gdsc.earthgardener.data.datasource.signin.SignInDataSource
 import team.gdsc.earthgardener.data.datasource.signin.SignInRemoteDataSource
+import team.gdsc.earthgardener.data.datasource.signin.kakao.KakaoSignInDataSource
+import team.gdsc.earthgardener.data.datasource.signin.kakao.KakaoSignInRemoteDataSource
 import team.gdsc.earthgardener.data.datasource.signup.SignUpDataSource
 import team.gdsc.earthgardener.data.datasource.signup.SignUpRemoteDataSource
 import team.gdsc.earthgardener.domain.profile.modifypassword.ModifyPasswordData
@@ -34,4 +36,5 @@ val dataSourceModule = module {
     single<SignUpDataSource>{ SignUpRemoteDataSource(get()) }
     single<ModifyProfileDataSource>{ ModifyProfileRemoteDataSource(get()) }
     single<ModifyPasswordDataSource>{ ModifyPasswordRemoteDataSource(get())}
+    single<KakaoSignInDataSource>{ KakaoSignInRemoteDataSource(get())}
 }

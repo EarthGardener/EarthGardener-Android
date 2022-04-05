@@ -9,6 +9,7 @@ import team.gdsc.earthgardener.data.repository.PostRepositoryImpl
 import team.gdsc.earthgardener.data.repository.password.ModifyPasswordRepositoryImpl
 import team.gdsc.earthgardener.data.repository.profile.ModifyProfileRepositoryImpl
 import team.gdsc.earthgardener.data.repository.profile.ProfileRepositoryImpl
+import team.gdsc.earthgardener.data.repository.signin.KakaoSignInRepositoryImpl
 import team.gdsc.earthgardener.data.repository.signin.SignInRepositoryImpl
 import team.gdsc.earthgardener.data.repository.signup.SignUpRepositoryImpl
 import team.gdsc.earthgardener.domain.email.CheckEmailRepository
@@ -20,6 +21,7 @@ import team.gdsc.earthgardener.domain.profile.ProfileRepository
 import team.gdsc.earthgardener.domain.profile.modifypassword.ModifyPasswordRepository
 import team.gdsc.earthgardener.domain.profile.modifyprofile.ModifyProfileRepository
 import team.gdsc.earthgardener.domain.signin.SignInRepository
+import team.gdsc.earthgardener.domain.signin.kakao.KakaoSignInRepository
 import team.gdsc.earthgardener.domain.signup.SignUpRepository
 
 val repositoryModule = module {
@@ -33,4 +35,5 @@ val repositoryModule = module {
     single<SignUpRepository>{ SignUpRepositoryImpl(get()) }
     single<ModifyProfileRepository>{ ModifyProfileRepositoryImpl(get()) }
     single<ModifyPasswordRepository>{ModifyPasswordRepositoryImpl(get())}
+    single<KakaoSignInRepository> { KakaoSignInRepositoryImpl(get())}
 }

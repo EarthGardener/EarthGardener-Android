@@ -3,6 +3,7 @@ package team.gdsc.earthgardener.data.api
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
+import team.gdsc.earthgardener.data.model.request.signin.ReqKakaoSignInSuccessData
 import team.gdsc.earthgardener.data.model.request.signin.ReqSignInSuccessData
 import team.gdsc.earthgardener.data.model.response.signup.ResCheckEmailSuccessData
 import team.gdsc.earthgardener.data.model.response.signup.ResCheckNicknameSuccessData
@@ -34,5 +35,11 @@ interface LoginService {
     @POST("user/signin")
     suspend fun postSignIn(
         @Body data: ReqSignInSuccessData
+    ): ResSignInSuccessData
+
+    // Post KakaoSignIn
+    @POST("/user/signin/kakao")
+    suspend fun postKakaoSignIn(
+        @Body data: ReqKakaoSignInSuccessData
     ): ResSignInSuccessData
 }

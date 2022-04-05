@@ -16,7 +16,7 @@ val viewModelModule = module {
     viewModel { CheckNicknameViewModel(get()) }
     viewModel { MainViewModel(get(), get(), get(), get()) }
     viewModel { PostFormViewModel(get()) }
-    viewModel { SignInViewModel(get())}
+    viewModel { SignInViewModel(get(), get())}
     viewModel { SignUpViewModel(get(), get(), get()) }
     viewModel { ModifyProfileViewModel(get()) }
     viewModel { ModifyPasswordViewModel(get())}
