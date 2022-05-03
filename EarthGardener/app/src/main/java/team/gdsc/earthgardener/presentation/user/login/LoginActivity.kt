@@ -136,7 +136,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             if(error != null){
                 Log.d("login", "로그인 정보 없음")
             }else if(tokenInfo != null){
-                // main으로 넘어가기
+                // 이메일 받기 뷰로 이동
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()

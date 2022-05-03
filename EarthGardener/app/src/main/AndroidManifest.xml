@@ -19,9 +19,14 @@
         android:theme="@style/Theme.EarthGardener.Splash"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".presentation.mypage.modifyPW.ModifyPwActivity"
+            android:name=".presentation.user.login.SignupEmailActivity"
             android:theme="@style/Theme.EarthGardener"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
+        <activity
+            android:name=".presentation.mypage.modifyPW.ModifyPwActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EarthGardener" />
         <activity
             android:name=".presentation.mypage.modifyProfile.ModifyProfileActivity"
             android:exported="false"
@@ -49,17 +54,18 @@
             android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.EarthGardener" />
-
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
                     android:host="oauth"
-                    android:scheme="kakao4d39f8358a445b85f6a3204e74bcd599"/>
+                    android:scheme="kakao4d39f8358a445b85f6a3204e74bcd599" />
             </intent-filter>
         </activity>
     </application>
