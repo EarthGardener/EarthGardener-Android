@@ -62,6 +62,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         finish()
     }
 
+    private fun navigateToSignupEmail(){
+        startActivity(Intent(this, SignupEmailActivity::class.java))
+        finish()
+    }
+
     private fun observeSignIn(){
         signInViewModel.signInStatus.observe(this) {
             dismissLoadingDialog()
@@ -78,8 +83,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         signInViewModel.kakaoSignInStatus.observe(this){
             dismissLoadingDialog()
             if (it == 200) {
+                // 이메일 받는 뷰로 이동
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                navigateToMain()
+                navigateToSignupEmail()
             } else if (it == 401) {
                 Toast.makeText(this, "소셜 로그인 실패", Toast.LENGTH_SHORT).show()
             }
@@ -136,7 +142,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             if(error != null){
                 Log.d("login", "로그인 정보 없음")
             }else if(tokenInfo != null){
-                // 이메일 받기 뷰로 이동
+                // 메인으로 이동
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
