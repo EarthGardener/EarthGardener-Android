@@ -146,7 +146,7 @@ class SignupEmailActivity : BaseActivity<ActivitySignupEmailBinding>(R.layout.ac
         val handler = object: Handler(Looper.getMainLooper()){
             override fun handleMessage(msg: Message) {
                 val minute = String.format("%02d", totalTime/60)
-                val second = String.format("02d", totalTime%60)
+                val second = String.format("%02d", totalTime%60)
 
                 binding.tvEmailTimer.text = "$minute:$second"
 
