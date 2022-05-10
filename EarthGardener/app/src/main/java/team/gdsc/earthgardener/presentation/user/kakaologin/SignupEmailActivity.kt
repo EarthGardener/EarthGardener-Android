@@ -1,23 +1,29 @@
-package team.gdsc.earthgardener.presentation.user.login
+package team.gdsc.earthgardener.presentation.user.kakaologin
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.gdsc.earthgardener.R
 import team.gdsc.earthgardener.databinding.ActivitySignupEmailBinding
 import team.gdsc.earthgardener.presentation.base.BaseActivity
 import team.gdsc.earthgardener.presentation.main.MainActivity
+import team.gdsc.earthgardener.presentation.user.signup.viewModel.SignUpViewModel
 import java.util.regex.Pattern
 import kotlin.concurrent.thread
 
 class SignupEmailActivity : BaseActivity<ActivitySignupEmailBinding>(R.layout.activity_signup_email) {
+
+    private val checkEmailViewModel: SignUpViewModel by viewModel()
 
     private var emailCode: String? = null
     private var checkEmailCode = false
@@ -25,13 +31,28 @@ class SignupEmailActivity : BaseActivity<ActivitySignupEmailBinding>(R.layout.ac
     private var totalTime = 0
     private var started = false
 
+    private var id: String? = null
+    private var nickname: String? = null
+    private var image: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initUser()
         checkEmailWatcher()
         getEmailCodeEvent()
-        observeGetEmailCode()
+        observeCheckEmailIfSignedUp()
+        observeCheckEmailCode()
         checkEmailCode()
         btnSignUpEvent()
+    }
+
+    private fun initUser(){
+        id = intent.getStringExtra("id")
+        nickname = intent.getStringExtra("nickname")
+        image = intent.getStringExtra("image")
+        Log.d("kakao-id", id!!)
+        Log.d("kakao-nickname", nickname!!)
+        Log.d("kakao-image", image!!)
     }
 
     private fun btnSignUpEvent(){
@@ -89,22 +110,45 @@ class SignupEmailActivity : BaseActivity<ActivitySignupEmailBinding>(R.layout.ac
                 showLoadingDialog(this)
 
                 // 이메일 보내고 코드 받기
+                checkEmailViewModel.email = binding.etSignUpEmail.text.toString().trim()
+                checkEmailViewModel.getEmail()
             }
         }
     }
 
-    private fun observeGetEmailCode(){
-        // 코드 입력 제한 시간
-        startEmailCodeTimer()
+    private fun observeCheckEmailIfSignedUp(){
+        checkEmailViewModel.emailStatus.observe(this, Observer {
+            if(it == 409){
+                dismissLoadingDialog()
+                Toast.makeText(this, "이미 가입된 이메일입니다", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
+
+    private fun observeCheckEmailCode(){
+        checkEmailViewModel.currentCode.observe(this, Observer {
+            dismissLoadingDialog()
+            Toast.makeText(this, "해당 이메일로 인증 코드를 보냈습니다", Toast.LENGTH_SHORT).show()
+
+            emailCode = it.toString()
+            Log.d("emailCode", emailCode!!)
+
+            binding.tvCode.isVisible = true
+            binding.linearEmailCode.isVisible = true
+
+            totalTime = 60 * 3 // 3분
+            startEmailCodeTimer()
+        })
+    }
+
 
     private fun startEmailCodeTimer(){
         val handler = object: Handler(Looper.getMainLooper()){
             override fun handleMessage(msg: Message) {
                 val minute = String.format("%02d", totalTime/60)
-                val seconde = String.format("02d", totalTime%60)
+                val second = String.format("02d", totalTime%60)
 
-                binding.tvEmailTimer.text = "$minute:$seconde"
+                binding.tvEmailTimer.text = "$minute:$second"
 
                 if(totalTime == 0){
                     Toast.makeText(this@SignupEmailActivity, "이메일 코드를 다시 발급받으세요", Toast.LENGTH_SHORT).show()

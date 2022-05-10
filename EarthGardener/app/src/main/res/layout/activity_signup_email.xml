@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.user.login.SignupEmailActivity">
+    tools:context=".presentation.user.kakaologin.SignupEmailActivity">
 
     <data>
 
@@ -62,11 +62,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_sign_up_email"/>
 
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/post_code_to_email"
+            android:fontFamily="@font/suit_medium"
+            app:layout_constraintTop_toBottomOf="@+id/et_sign_up_email"
+            android:textColor="@color/any_dark_gray"
+            android:visibility="invisible"
+            android:layout_marginTop="5dp"
+            android:textSize="15sp"/>
+
+
         <LinearLayout
             android:id="@+id/linear_email_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/et_sign_up_email"
+            app:layout_constraintTop_toBottomOf="@id/tv_code"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:visibility="invisible"

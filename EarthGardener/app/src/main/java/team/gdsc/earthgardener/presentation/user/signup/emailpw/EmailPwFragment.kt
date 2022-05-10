@@ -20,7 +20,6 @@ import team.gdsc.earthgardener.databinding.FragmentEmailPwBinding
 import team.gdsc.earthgardener.presentation.base.BaseFragment
 import team.gdsc.earthgardener.presentation.user.signup.nickname.NickNameFragment
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
-import team.gdsc.earthgardener.presentation.user.signup.emailpw.viewModel.CheckEmailViewModel
 import team.gdsc.earthgardener.presentation.user.signup.viewModel.SignUpViewModel
 import java.util.regex.Pattern
 import kotlin.concurrent.thread

@@ -19,7 +19,7 @@
         android:theme="@style/Theme.EarthGardener.Splash"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".presentation.user.login.SignupEmailActivity"
+            android:name=".presentation.user.kakaologin.SignupEmailActivity"
             android:theme="@style/Theme.EarthGardener"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />

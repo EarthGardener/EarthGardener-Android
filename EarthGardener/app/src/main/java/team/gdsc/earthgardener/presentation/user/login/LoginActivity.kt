@@ -1,12 +1,10 @@
 package team.gdsc.earthgardener.presentation.user.login
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,6 +14,7 @@ import team.gdsc.earthgardener.data.model.request.signin.ReqSignInSuccessData
 import team.gdsc.earthgardener.databinding.ActivityLoginBinding
 import team.gdsc.earthgardener.presentation.main.MainActivity
 import team.gdsc.earthgardener.presentation.base.BaseActivity
+import team.gdsc.earthgardener.presentation.user.kakaologin.SignupEmailActivity
 import team.gdsc.earthgardener.presentation.user.login.viewModel.SignInViewModel
 import team.gdsc.earthgardener.presentation.user.signup.SignUpActivity
 import java.util.regex.Pattern
@@ -30,7 +29,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         btnLoginEvent()
         navigateToSignUp()
         observeSignIn()
-        observeKakaoSignIn()
+        //observeKakaoSignIn()
         btnKakaoLoginEvent()
         checkKakaoLogin()
         //logout()
@@ -84,8 +83,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             dismissLoadingDialog()
             if (it == 200) {
                 // 이메일 받는 뷰로 이동
-                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                navigateToSignupEmail()
+                //Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                //navigateToSignupEmail()
             } else if (it == 401) {
                 Toast.makeText(this, "소셜 로그인 실패", Toast.LENGTH_SHORT).show()
             }
@@ -105,7 +104,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             if(error != null){
                 Log.d("login", "정보 없음")
             }else{
-                Log.d("login", "카카오톡 로그인에 성공")
+                //Log.d("login", "카카오톡 로그인에 성공")
 
                 UserApiClient.instance.me{ user, error ->
                     val id = user?.id.toString()
@@ -121,8 +120,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     Log.d("image",image)
 
                     // Post
-                    showLoadingDialog(this)
-                    signInViewModel.postKakaoSignIn(ReqKakaoSignInSuccessData(id, nickname, image))
+                    //showLoadingDialog(this)
+                    //signInViewModel.postKakaoSignIn(ReqKakaoSignInSuccessData(id, nickname, image))
+                    val intent = Intent(this, SignupEmailActivity::class.java)
+                    intent.putExtra("id", id)
+                    intent.putExtra("nickname", nickname)
+                    intent.putExtra("image", image)
+                    startActivity(intent)
+                    finish()
                 }
             }
         }
