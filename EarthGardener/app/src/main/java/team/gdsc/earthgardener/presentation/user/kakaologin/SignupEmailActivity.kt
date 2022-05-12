@@ -14,16 +14,18 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.gdsc.earthgardener.R
+import team.gdsc.earthgardener.data.model.request.signin.ReqKakaoSignInSuccessData
 import team.gdsc.earthgardener.databinding.ActivitySignupEmailBinding
 import team.gdsc.earthgardener.presentation.base.BaseActivity
 import team.gdsc.earthgardener.presentation.main.MainActivity
+import team.gdsc.earthgardener.presentation.user.kakaologin.viewModel.KakaoSignUpViewModel
 import team.gdsc.earthgardener.presentation.user.signup.viewModel.SignUpViewModel
 import java.util.regex.Pattern
 import kotlin.concurrent.thread
 
 class SignupEmailActivity : BaseActivity<ActivitySignupEmailBinding>(R.layout.activity_signup_email) {
 
-    private val checkEmailViewModel: SignUpViewModel by viewModel()
+    private val kakaoSignUpViewModel: KakaoSignUpViewModel by viewModel()
 
     private var emailCode: String? = null
     private var checkEmailCode = false
@@ -44,26 +46,13 @@ class SignupEmailActivity : BaseActivity<ActivitySignupEmailBinding>(R.layout.ac
         observeCheckEmailCode()
         checkEmailCode()
         btnSignUpEvent()
+        observeKakaoSignIn()
     }
 
     private fun initUser(){
         id = intent.getStringExtra("id")
         nickname = intent.getStringExtra("nickname")
         image = intent.getStringExtra("image")
-        Log.d("kakao-id", id!!)
-        Log.d("kakao-nickname", nickname!!)
-        Log.d("kakao-image", image!!)
-    }
-
-    private fun btnSignUpEvent(){
-        binding.btnFinish.setOnClickListener {
-            if(checkEmailPattern()){
-
-
-            }else{
-                Toast.makeText(this, "이메일 형식에 맞추어 작성해주세요", Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
     private fun checkEmailPattern(): Boolean {
@@ -110,14 +99,14 @@ class SignupEmailActivity : BaseActivity<ActivitySignupEmailBinding>(R.layout.ac
                 showLoadingDialog(this)
 
                 // 이메일 보내고 코드 받기
-                checkEmailViewModel.email = binding.etSignUpEmail.text.toString().trim()
-                checkEmailViewModel.getEmail()
+                kakaoSignUpViewModel.email = binding.etSignUpEmail.text.toString().trim()
+                kakaoSignUpViewModel.getEmail()
             }
         }
     }
 
     private fun observeCheckEmailIfSignedUp(){
-        checkEmailViewModel.emailStatus.observe(this, Observer {
+        kakaoSignUpViewModel.emailStatus.observe(this, Observer {
             if(it == 409){
                 dismissLoadingDialog()
                 Toast.makeText(this, "이미 가입된 이메일입니다", Toast.LENGTH_SHORT).show()
@@ -126,7 +115,7 @@ class SignupEmailActivity : BaseActivity<ActivitySignupEmailBinding>(R.layout.ac
     }
 
     private fun observeCheckEmailCode(){
-        checkEmailViewModel.currentCode.observe(this, Observer {
+        kakaoSignUpViewModel.currentCode.observe(this, Observer {
             dismissLoadingDialog()
             Toast.makeText(this, "해당 이메일로 인증 코드를 보냈습니다", Toast.LENGTH_SHORT).show()
 
@@ -187,6 +176,36 @@ class SignupEmailActivity : BaseActivity<ActivitySignupEmailBinding>(R.layout.ac
             }else{
                 Toast.makeText(this, "인증코드를 잘못 입력하셨습니다", Toast.LENGTH_SHORT).show()
                 binding.etEmailCode.text.clear()
+            }
+        }
+    }
+
+    private fun btnSignUpEvent(){
+        binding.btnFinish.setOnClickListener {
+            if(checkEmailPattern()){
+                // 보내기
+                Log.d("kakao-id", id!!)
+                Log.d("kakao-nickname", nickname!!)
+                Log.d("kakao-image", image!!)
+                Log.d("kakao-email", binding.etSignUpEmail.text.toString().trim())
+
+                showLoadingDialog(this)
+                kakaoSignUpViewModel.postKakaoSignIn(ReqKakaoSignInSuccessData(id!!,nickname!!, image!!, binding.etSignUpEmail.text.toString().trim()))
+
+            }else{
+                Toast.makeText(this, "이메일 형식에 맞추어 작성해주세요", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun observeKakaoSignIn(){
+        kakaoSignUpViewModel.kakaoSignInStatus.observe(this){
+            dismissLoadingDialog()
+            if(it == 200){
+                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                kakaoSignup()
+            }else if(it == 401){
+                Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
             }
         }
     }

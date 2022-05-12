@@ -17,5 +17,5 @@ val viewModelModule = module {
     viewModel { SignUpViewModel(get(), get(), get()) }
     viewModel { ModifyProfileViewModel(get()) }
     viewModel { ModifyPasswordViewModel(get())}
-    viewModel { KakaoSignUpViewModel(get())}
+    viewModel { KakaoSignUpViewModel(get(), get())}
 }

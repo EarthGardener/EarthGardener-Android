@@ -10,5 +10,8 @@ data class ReqKakaoSignInSuccessData(
     val nickname: String,
 
     @SerializedName("image_url")
-    val image_url : String?= null
+    val image_url : String?= null,
+
+    @SerializedName("email")
+    val email: String
 )
