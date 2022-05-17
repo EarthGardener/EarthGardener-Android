@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import team.gdsc.earthgardener.R
+import team.gdsc.earthgardener.data.model.request.password.ReqModifyPasswordSuccessData
 import team.gdsc.earthgardener.databinding.ActivityModifyPwBinding
 import team.gdsc.earthgardener.presentation.base.BaseActivity
 import team.gdsc.earthgardener.presentation.mypage.modifyPW.viewmodel.ModifyPasswordViewModel
@@ -16,6 +17,8 @@ import team.gdsc.earthgardener.presentation.mypage.modifyPW.viewmodel.ModifyPass
 class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity_modify_pw) {
 
     private val modifyPasswordModel: ModifyPasswordViewModel by viewModel()
+    private var ori_pw: String ?= null
+    private var new_pw: String ?= null
 
     var checkOriginalPw = false
     var checkNewPw = false
@@ -102,9 +105,9 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
             Log.d("check", check.toString())
             if(check){
                 // put
-                modifyPasswordModel.ori_pw = binding.etModifyOriginalPw.text.toString().trim()
-                modifyPasswordModel.new_pw = binding.etModifyNewPw.text.toString().trim()
-                modifyPasswordModel.putPassword()
+                ori_pw = binding.etModifyOriginalPw.text.toString().trim()
+                new_pw = binding.etModifyNewPw.text.toString().trim()
+                modifyPasswordModel.putPassword(ReqModifyPasswordSuccessData(ori_pw!!, new_pw!!))
             }else{
                 Toast.makeText(this, "새 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
             }
@@ -126,6 +129,8 @@ class ModifyPwActivity : BaseActivity<ActivityModifyPwBinding>(R.layout.activity
             }else if(it == 409){
                 // fail
                 Toast.makeText(this, "기존 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show()
+            }else if(it == 401){
+                Toast.makeText(this, "토큰이 만료되었습니다", Toast.LENGTH_SHORT).show()
             }
         })
     }
