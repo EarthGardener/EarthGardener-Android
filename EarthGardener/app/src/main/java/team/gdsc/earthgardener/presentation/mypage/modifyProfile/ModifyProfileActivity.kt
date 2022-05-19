@@ -50,6 +50,9 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
     private var profileMap = HashMap<String, RequestBody>()
     private var check_img = false
 
+    private var map: HashMap<String, RequestBody> ?= null
+    private var image: MultipartBody.Part ?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setProfile()
@@ -103,8 +106,8 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
         newImg = bitmapMultipartBody
 
         if(check_img){
-            modifyProfileModel.image = newImg!!
-            modifyProfileModel.putProfile()
+            image = newImg!!
+            modifyProfileModel.putProfile(image!!, map!!)
         }
     }
 
@@ -166,7 +169,7 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
             profileMap["nickname"] = nickname
 
             // put
-            modifyProfileModel.map = profileMap
+            map = profileMap
             // 새로운 이미지 => bitmap보내고 아니면 이전 img_url 보내기
             if(newImg == null){
                 check_img = true
@@ -179,8 +182,8 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
 
             }else{
                 check_img = false
-                modifyProfileModel.image = newImg!!
-                modifyProfileModel.putProfile()
+                image = newImg!!
+                modifyProfileModel.putProfile(image!!, map!!)
             }
             
         }

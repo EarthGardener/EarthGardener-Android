@@ -5,45 +5,39 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import team.gdsc.earthgardener.domain.profile.modifyprofile.ModifyProfileRepository
+import team.gdsc.earthgardener.domain.profile.modifyprofile.usecase.ModifyProfileUseCase
+import team.gdsc.earthgardener.util.ResultWrapper
+import team.gdsc.earthgardener.util.safeApiCall
+import timber.log.Timber
 
 class ModifyProfileViewModel(
-    private val modifyProfileRepository: ModifyProfileRepository
+    private val modifyProfileUseCase: ModifyProfileUseCase
 ) : ViewModel(){
 
     private var _status = MutableLiveData<Int>()
     val status : LiveData<Int> = _status
 
-    val tempImg : RequestBody = RequestBody.create("image/jpg".toMediaTypeOrNull(), "temp")
-    private var _map : HashMap<String, RequestBody> = hashMapOf("temp" to tempImg)
-    var map: HashMap<String, RequestBody> = _map
-        set(value){
-            _map = value
-            field = value
-        }
-
-    private var _image: MultipartBody.Part = MultipartBody.Part.createFormData("file", "file")
-    var image : MultipartBody.Part = _image
-        set(value){
-            _image = value
-            field = value
-        }
-
-
-    fun putProfile() = viewModelScope.launch {
-        runCatching{ modifyProfileRepository.putModifyProfileResult(_image, _map)}
-            .onSuccess {
-                _status.postValue(it.status)
-                Log.d("회원정보 수정", "success")
+    fun putProfile(image: MultipartBody.Part,data: HashMap<String, RequestBody>) = viewModelScope.launch {
+        when(val responseData =
+            safeApiCall(Dispatchers.IO){modifyProfileUseCase(image, data)}){
+            is ResultWrapper.Success ->{
+                Timber.d("프로필 변경 성공")
+                _status.value = 200
             }
-            .onFailure {
-                Log.d("회원정보 수정", "fail")
-                it.printStackTrace()
+            is ResultWrapper.NetworkError -> {
+                Timber.d("프로필 변경: Network Err")
             }
+            is ResultWrapper.GenericError -> {
+                Timber.d("프로필 변경: Generic ERr")
+                _status.value = responseData.code ?: 0
+            }
+        }
     }
 
 }
