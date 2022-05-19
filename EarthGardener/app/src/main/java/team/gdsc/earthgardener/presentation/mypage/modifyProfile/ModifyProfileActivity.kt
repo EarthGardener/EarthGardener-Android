@@ -193,11 +193,13 @@ class ModifyProfileActivity : BaseActivity<ActivityModifyProfileBinding>(R.layou
     private fun observeProfile(){
         modifyProfileModel.status.observe(this, Observer {
             dismissLoadingDialog()
-            if(it.toString() == "200"){
+            if(it == 200){
                 Toast.makeText(this, "회원정보 수정 성공", Toast.LENGTH_SHORT).show()
                 finish()
-            }else if(it.toString() == "409"){
-                Toast.makeText(this, "이미지 크기가 큽니다", Toast.LENGTH_SHORT).show()
+            }else if(it == 409){
+                Toast.makeText(this, "5MB이하의 이미지만 등록할 수 있습니다.", Toast.LENGTH_SHORT).show()
+            }else if(it == 401){
+                Toast.makeText(this, "토큰이 만료되었습니다", Toast.LENGTH_SHORT).show()
             }
         })
     }
